@@ -117,12 +117,12 @@ function Header({ i18n, t, scrollToSection, section1Ref, section2Ref, section3Re
           onClick={() => changeLanguage(language === 'tr' ? 'en' : 'tr')}
         >
           <img
-            src="public/img/uk-flag.png"
+            src="/img/uk-flag.png"
             alt="English"
             style={{ display: language === 'en' ? 'block' : 'none' }}
           />
           <img
-            src="public/img/turkey-flag.png"
+            src="/img/turkey-flag.png"
             alt="Türkçe"
             style={{ display: language === 'tr' ? 'block' : 'none' }}
           />
@@ -193,7 +193,7 @@ function HeaderContent({ i18n, t }) {
         <div className="lg-img">
           <div className="home-avatar-box">
             <div className="home-avatar-in">
-              <img src="./public/img/resim1.jpg" style={{ width: '526px', height: '526px' }} alt="" />
+              <img src="./img/resim1.jpg" style={{ width: '526px', height: '526px' }} alt="" />
             </div>
           </div>
         </div>
@@ -306,31 +306,31 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
         <div className="border-bottom"></div>
         <div className='skills'>
           <div className="skill">
-            <img src="/public/img/html-icon.svg" alt="" />
+            <img src="/img/html-icon.svg" alt="" />
           </div>
           <div className="skill">
-            <img src="/public/img/css-icon.svg" alt="" />
+            <img src="/img/css-icon.svg" alt="" />
           </div>
           <div className="skill">
-            <img src="/public/img/javascript-icon.svg" alt="" />
+            <img src="/img/javascript-icon.svg" alt="" />
           </div>
           <div className="skill">
-            <img src="/public/img/react-icon.svg" alt="" />
+            <img src="/img/react-icon.svg" alt="" />
           </div>
           <div className="skill">
-            <img src="/public/img/bootstrap-icon.svg" alt="" />
+            <img src="/img/bootstrap-icon.svg" alt="" />
           </div>
           <div className="skill">
-            <img src="/public/img/nextjs-icon.svg" alt="" />
+            <img src="/img/nextjs-icon.svg" alt="" />
           </div>
           <div className="skill">
-            <img src="/public/img/supabase-icon.svg" alt="" />
+            <img src="/img/supabase-icon.svg" alt="" />
           </div>
           <div className="skill">
-            <img src="/public/img/figma-icon.svg" alt="" />
+            <img src="/img/figma-icon.svg" alt="" />
           </div>
           <div className="skill">
-            <img src="/public/img/git-icon.svg" alt="" />
+            <img src="/img/git-icon.svg" alt="" />
           </div>
         </div>
 
