@@ -143,7 +143,7 @@ function Header({ i18n, t, scrollToSection, section1Ref, section2Ref, section3Re
           <li><a href="#" className="menu__item">About</a></li>
           <li><a href="#" className="menu__item">Project</a></li>
           <li><a href="#" className="menu__item">Contact</a></li>
-          <span><a href="/new-cv.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
+          <span><a href="/atakan-arikan-cv.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
             <rect
               x="0" y="0"
               fill='none'
@@ -182,7 +182,7 @@ function HeaderContent({ i18n, t }) {
               data-type='["Web Developer","Front-End Developer", "Freelancer"]'
             ></span>
           </h3>
-          <span><a href="/new-cv.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
+          <span><a href="/atakan-arikan-cv.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
             <rect
               x="0" y="0"
               fill='none'
@@ -306,31 +306,31 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
         <div className="border-bottom"></div>
         <div className='skills'>
           <div className="skill">
-            <img src="/img/html-icon.svg" alt="" />
+            <img src="/img/html-icon.svg" alt="html" />
           </div>
           <div className="skill">
-            <img src="/img/css-icon.svg" alt="" />
+            <img src="/img/css-icon.svg" alt="css" />
           </div>
           <div className="skill">
-            <img src="/img/javascript-icon.svg" alt="" />
+            <img src="/img/javascript-icon.svg" alt="javascript" />
           </div>
           <div className="skill">
-            <img src="/img/react-icon.svg" alt="" />
+            <img src="/img/react-icon.svg" alt="react" />
           </div>
           <div className="skill">
-            <img src="/img/bootstrap-icon.svg" alt="" />
+            <img src="/img/bootstrap-icon.svg" alt="bootstrap" />
           </div>
           <div className="skill">
-            <img src="/img/nextjs-icon.svg" alt="" />
+            <img src="/img/nextjs-icon.svg" alt="nextjs" />
           </div>
           <div className="skill">
-            <img src="/img/supabase-icon.svg" alt="" />
+            <img src="/img/supabase-icon.svg" alt="supabase" />
           </div>
           <div className="skill">
-            <img src="/img/figma-icon.svg" alt="" />
+            <img src="/img/figma-icon.svg" alt="figma" />
           </div>
           <div className="skill">
-            <img src="/img/git-icon.svg" alt="" />
+            <img src="/img/git-icon.svg" alt="git" />
           </div>
         </div>
 
