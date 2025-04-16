@@ -143,7 +143,7 @@ function Header({ i18n, t, scrollToSection, section1Ref, section2Ref, section3Re
           <li><a href="#" className="menu__item">About</a></li>
           <li><a href="#" className="menu__item">Project</a></li>
           <li><a href="#" className="menu__item">Contact</a></li>
-          <span><a href="/atakan-arikan-cv.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
+          <span><a href="/cv.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
             <rect
               x="0" y="0"
               fill='none'
@@ -182,7 +182,7 @@ function HeaderContent({ i18n, t }) {
               data-type='["Web Developer","Front-End Developer", "Freelancer"]'
             ></span>
           </h3>
-          <span><a href="/atakan-arikan-cv.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
+          <span><a href="/cv.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
             <rect
               x="0" y="0"
               fill='none'
