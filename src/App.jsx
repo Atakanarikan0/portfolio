@@ -12,6 +12,39 @@ function App() {
   const section3Ref = useRef(null);
   const section4Ref = useRef(null);
   const { t, i18n } = useTranslation()
+  const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    const handleScrollChange = () => {
+      const sectionRefs = {
+        home: section1Ref,
+        about: section2Ref,
+        projects: section3Ref,
+        contact: section4Ref,
+      };
+  
+      const scrollY = window.scrollY;
+      const buffer = 200; 
+  
+      for (const key in sectionRefs) {
+        const ref = sectionRefs[key];
+        if (ref.current) {
+          const offsetTop = ref.current.offsetTop;
+          if (scrollY + buffer >= offsetTop) {
+            setActiveSection(key);
+          }
+        }
+      }
+    };
+  
+    window.addEventListener("scroll", handleScrollChange);
+  
+    return () => {
+      window.removeEventListener("scroll", handleScrollChange);
+    };
+  }, []);
+  
+  
 
   useEffect(() => {
     handleScroll()
@@ -49,9 +82,11 @@ function App() {
           section2Ref={section2Ref}
           section3Ref={section3Ref}
           section4Ref={section4Ref}
+          activeSection={activeSection}
+          setActiveSection={setActiveSection}
           i18n={i18n} t={t} />
 
-        <HeaderContent i18n={i18n} t={t} />
+        <HeaderContent i18n={i18n} t={t}  section1Ref={section1Ref} />
         <MainContent
           section1Ref={section1Ref}
           section2Ref={section2Ref}
@@ -64,7 +99,7 @@ function App() {
   )
 }
 
-function Header({ i18n, t, scrollToSection, section1Ref, section2Ref, section3Ref, section4Ref }) {
+function Header({ i18n, t,activeSection,setActiveSection, scrollToSection, section1Ref, section2Ref, section3Ref, section4Ref }) {
   const [language, setLanguage] = useState('en');
   const [flipped, setFlipped] = useState(false);
   const [isOpen, setOpen] = useState(false);
@@ -80,36 +115,47 @@ function Header({ i18n, t, scrollToSection, section1Ref, section2Ref, section3Re
   };
 
 
+  const handleMenuClick = () => {
+    setOpen(false); 
+  }
+
   if (isDarkMode) {
     document.body.classList.add('dark-mode')
   } else {
     document.body.classList.remove('dark-mode')
   }
-  const handleScroll = (sectionRef, event) => {
-    event.preventDefault(); // Sayfanın yeniden yüklenmesini engeller
-    if (sectionRef.current) {
-      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const sectionRefs = {
-    "Anasayfa": section1Ref,
-    "Hakkımda": section2Ref,
-    "Projeler": section3Ref,
-    "İletişim": section4Ref
+    "home": section1Ref,
+    "about": section2Ref,
+    "projects": section3Ref,
+    "contact": section4Ref
   };
   return (
     <div className="header">
-
       <h1>Port<span>folio</span></h1>
       <ul className="desktop-menu__box">
-        {t("menuBox", { returnObjects: true }).map((i, index) => (
+        {t("menuBox", { returnObjects: true }).map((item, index) => (
           <li key={index}>
-            <a href="#" onClick={(e) => handleScroll(sectionRefs[i], e)} className="menu__item">
-              {i}
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                const ref = sectionRefs[item.key];
+                console.log(ref);
+                if (ref?.current) {
+                  scrollToSection(ref);
+                  setActiveSection(item.key); // tıklanınca da aktifliği güncelle
+
+                }
+              }}
+              className={`menu__item ${activeSection === item.key ? 'border-btm' : ''}`}
+              >
+              {item.label}
             </a>
           </li>
         ))}
+
       </ul>
       <div className="language-selector">
         <div
@@ -134,15 +180,30 @@ function Header({ i18n, t, scrollToSection, section1Ref, section2Ref, section3Re
         <div className={`moon ${isDarkMode ? 'visible' : ''}`}></div>
       </button>
       <div className="hamburger-menu">
-        <input type="checkbox" id="menu__toggle" onClick={() => { setOpen(!isOpen); console.log(isOpen); }} />
+        <input type="checkbox" id="menu__toggle" onClick={() => { setOpen(!isOpen); }} checked={isOpen} readOnly />
         <label className="menu__btn" htmlFor="menu__toggle">
           <span></span>
         </label>
         <ul className="menu__box" style={{ display: isOpen ? "block" : "none" }}>
-          <li><a href="#" className="menu__item">Home</a></li>
-          <li><a href="#" className="menu__item">About</a></li>
-          <li><a href="#" className="menu__item">Project</a></li>
-          <li><a href="#" className="menu__item">Contact</a></li>
+          {t("menuBox", { returnObjects: true }).map((item, index) => (
+            <li key={index}>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const ref = sectionRefs[item.key];
+                  console.log(ref);
+                  if (ref?.current) {
+                    scrollToSection(ref);
+                    handleMenuClick();
+                  }
+                }}
+                className="menu__item"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
           <span><a href="/cv.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
             <rect
               x="0" y="0"
@@ -150,16 +211,16 @@ function Header({ i18n, t, scrollToSection, section1Ref, section2Ref, section3Re
               width="100%"
               height="100%" />
           </svg></a></span>
-          
+
         </ul>
       </div>
 
     </div>
   )
 }
-function HeaderContent({ i18n, t }) {
+function HeaderContent({ i18n, t, section1Ref}) {
   return (
-    <>
+    <div ref={section1Ref}>
       <div className='header-content'>
         <div className="overlay"></div>
         <div className='text'>
@@ -198,7 +259,7 @@ function HeaderContent({ i18n, t }) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 function MainContent({ i18n, t, section2Ref, section3Ref }) {
@@ -298,7 +359,7 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
         </div>
       </div>
       <div id='section3' className={`skills-box section ${visibleSections.section3 ? "fade" : ""}`}>
-      <div className="keyboard">
+        <div className="keyboard">
           {t("skills", { returnObjects: true }).map((letter, index) => (
             <span className="key" key={index}>{letter}</span>
           ))}
@@ -336,7 +397,7 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
 
       </div>
       <div ref={section3Ref} id='section4' className="projects-box">
-      <div className="keyboard">
+        <div className="keyboard">
           {t("projects", { returnObjects: true }).map((letter, index) => (
             <span className="key" key={index}>{letter}</span>
           ))}

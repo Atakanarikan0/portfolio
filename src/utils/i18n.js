@@ -6,8 +6,7 @@ const resources = {
   tr: {
     translation: {
       welcome: 'Merhaba, ben',
-      about: "Gıda mühendisliği mezunu olup yazılım dünyasına adım atan bir Frontend Developer'ım. Artık ürün analizleri değil, web performansını iyileştiriyorum. HTML, CSS ve JavaScript'in yanı sıra React ve Next.js kullanarak modern ve dinamik projeler kodluyorum. Backend tarafındaki ihtiyaçlarımı Supabase ile karşılıyor, verileri yönetirken güçlü ve ölçeklenebilir çözümler üretiyorum. Yeniliklere ve gelişime her zaman açık biri olarak, teknolojiyi takip eder ve kendimi sürekli ileriye taşımaya çalışıyorum",
-      menuBox:['Anasayfa','Hakkımda','Projeler','İletişim'],
+      about: "Gıda mühendisliği mezunu olup yazılım dünyasına adım atan bir Frontend Developer'ım. Artık ürün analizleri değil, web performansını iyileştiriyorum. HTML, CSS ve JavaScript'in yanı sıra React ve Next.js kullanarak modern ve dinamik projeler geliştiriyorum. Backend tarafındaki ihtiyaçlarımı Supabase ile karşılıyorum. Yeniliklere, yeni diller öğrenmeye ve gelişime her zaman açık biri olarak teknolojiyi takip ediyor, kendimi sürekli ileriye taşımaya çalışıyorum. Yazılım alanındaki hedeflerim ise, uzman bir frontend developer olduktan sonra kendimi mobil alanda geliştirmek.",
       introduction: ["G", "İ", "R", "İ", "Ş"],
       education: ["E", "Ğ", "İ", "T", "İ", "M"],
       skills: ["Y", "E", "T", "E", "N", "E", "K", "L", "E", "R"],
@@ -17,19 +16,24 @@ const resources = {
       footerText: "Eğer aklınızda bir proje fikri varsa veya projelerim hakkında daha fazla bilgi almak istiyorsanız, bana e-posta adresim veya sosyal medya hesaplarım üzerinden ulaşabilirsiniz. Size yardımcı olmaktan memnuniyet duyarım!",
       me: '',
       contact: 'Bana Ulaşın',
-      school1: "Balıkesir Üniversite",
-      school2: "Nişantaşı Üniversite Acunmedya Akademi",
+      school1: "Balıkesir Üniversitesi",
+      school2: "Nişantaşı Üniversitesi Acunmedya Akademi",
       fe: "Gıda Mühendisliği",
       inovatim: "İnovatim inovasyon yarışması - ilk 10",
-
+      menuBox: [
+        { key: "home", label: "Anasayfa" },
+        { key: "about", label: "Hakkımda" },
+        { key: "projects", label: "Projeler" },
+        { key: "contact", label: "İletişim" }
+      ]
+      
 
     }
   },
   en: {
     translation: {
       welcome: "Hi There, I'm",
-      about: "I am a Frontend Developer who graduated in Food Engineering and stepped into the world of software development. Instead of product analysis, now i focus on improving web performance. I develop modern and dynamic projects using HTML, CSS, and JavaScript, along with React and Next.js. I meet my backend needs with Supabase, providing robust and scalable solutions for data management. Always open to innovation and growth, I keep up with technology and continuously strive to advance myself.",
-      menuBox:['Home','About','Projects','Contact'],
+      about: "I am a Frontend Developer who graduated in Food Engineering and stepped into the world of software development. Instead of product analysis, now i focus on improving web performance. I develop modern and dynamic projects using HTML, CSS, and JavaScript, along with React and Next.js. I handle my backend needs with Supabase.As someone who is always open to innovations, learning new languages, and development, I follow technology and constantly strive to improve myself. My goal in software development is to become an expert frontend developer and then further develop myself in the mobile field.",
       introduction: ["I", "N", "T", "R", "O", "D", "U", "C", "T", "I", "O", "N"],
       education: ["E", "D", "U", "C", "A", "T", "I", "O", "N"],
       skills: ["S", "K", "I", "L", "L", "S"],
@@ -43,7 +47,13 @@ const resources = {
       school2: "Nisantasi University Acunmedya Academy",
       fe: "Food Engineer",  
       inovatim: "İnovatim Innovation Competition - Top 10",
-
+      menuBox: [
+        { key: "home", label: "Home" },
+        { key: "about", label: "About" },
+        { key: "projects", label: "Projects" },
+        { key: "contact", label: "Contact" }
+      ]
+      
 
     }
   }
