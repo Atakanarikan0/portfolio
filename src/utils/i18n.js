@@ -6,7 +6,7 @@ const resources = {
   tr: {
     translation: {
       welcome: 'Merhaba, ben',
-      about: "Gıda mühendisliği mezunu olup yazılım dünyasına adım atan bir Frontend Developer'ım. Artık ürün analizleri değil, web performansını iyileştiriyorum. HTML, CSS ve JavaScript'in yanı sıra React ve Next.js kullanarak modern ve dinamik projeler geliştiriyorum. Backend tarafındaki ihtiyaçlarımı Supabase ile karşılıyorum. Yeniliklere, yeni diller öğrenmeye ve gelişime her zaman açık biri olarak teknolojiyi takip ediyor, kendimi sürekli ileriye taşımaya çalışıyorum. Yazılım alanındaki hedeflerim ise, uzman bir frontend developer olduktan sonra kendimi mobil alanda geliştirmek.",
+      about:"Gıda mühendisliği mezunu olup yazılım dünyasına adım atan bir Frontend Developer'ım. Artık ürün analizleri değil, web performansını iyileştiriyorum. <0>HTML</0>, <1>CSS</1> ve <2>JavaScript</2>'in yanı sıra <3>React</3> ve <4>Next.js</4> kullanarak modern ve dinamik projeler geliştiriyorum. Backend tarafındaki ihtiyaçlarımı <5>Supabase</5> ile karşılıyorum. Yeniliklere, yeni diller öğrenmeye ve gelişime her zaman açık biri olarak teknolojiyi takip ediyor, kendimi sürekli ileriye taşımaya çalışıyorum. Yazılım alanındaki hedeflerim ise, uzman bir frontend developer olduktan sonra kendimi mobil alanda geliştirmek.",
       introduction: ["G", "İ", "R", "İ", "Ş"],
       education: ["E", "Ğ", "İ", "T", "İ", "M"],
       skills: ["Y", "E", "T", "E", "N", "E", "K", "L", "E", "R"],
@@ -33,7 +33,7 @@ const resources = {
   en: {
     translation: {
       welcome: "Hi There, I'm",
-      about: "I am a Frontend Developer who graduated in Food Engineering and stepped into the world of software development. Instead of product analysis, now i focus on improving web performance. I develop modern and dynamic projects using HTML, CSS, and JavaScript, along with React and Next.js. I handle my backend needs with Supabase.As someone who is always open to innovations, learning new languages, and development, I follow technology and constantly strive to improve myself. My goal in software development is to become an expert frontend developer and then further develop myself in the mobile field.",
+      about:"I am a Frontend Developer who graduated in Food Engineering and stepped into the world of software development. Instead of product analysis, now I focus on improving web performance. <0>HTML</0>, <1>CSS</1>, and <2>JavaScript</2> are the core of what I use, along with <3>React</3> and <4>Next.js</4> to build modern and dynamic projects. I handle backend needs with <5>Supabase</5>. Being always open to innovation, learning new languages, and self-improvement, I keep up with technology and strive to push myself forward. My goal is to become an expert frontend developer and later grow in mobile development.",
       introduction: ["I", "N", "T", "R", "O", "D", "U", "C", "T", "I", "O", "N"],
       education: ["E", "D", "U", "C", "A", "T", "I", "O", "N"],
       skills: ["S", "K", "I", "L", "L", "S"],

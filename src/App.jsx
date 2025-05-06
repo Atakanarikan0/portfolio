@@ -5,6 +5,8 @@ import { handleScroll } from './utils/scrollEffect'
 import { motion } from "motion/react"
 import './utils/i18n'
 import { useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next';
+
 
 function App() {
   const section1Ref = useRef(null);
@@ -22,10 +24,10 @@ function App() {
         projects: section3Ref,
         contact: section4Ref,
       };
-  
+
       const scrollY = window.scrollY;
-      const buffer = 200; 
-  
+      const buffer = 200;
+
       for (const key in sectionRefs) {
         const ref = sectionRefs[key];
         if (ref.current) {
@@ -36,15 +38,15 @@ function App() {
         }
       }
     };
-  
+
     window.addEventListener("scroll", handleScrollChange);
-  
+
     return () => {
       window.removeEventListener("scroll", handleScrollChange);
     };
   }, []);
-  
-  
+
+
 
   useEffect(() => {
     handleScroll()
@@ -86,7 +88,7 @@ function App() {
           setActiveSection={setActiveSection}
           i18n={i18n} t={t} />
 
-        <HeaderContent i18n={i18n} t={t}  section1Ref={section1Ref} />
+        <HeaderContent i18n={i18n} t={t} section1Ref={section1Ref} />
         <MainContent
           section1Ref={section1Ref}
           section2Ref={section2Ref}
@@ -99,7 +101,7 @@ function App() {
   )
 }
 
-function Header({ i18n, t,activeSection,setActiveSection, scrollToSection, section1Ref, section2Ref, section3Ref, section4Ref }) {
+function Header({ i18n, t, activeSection, setActiveSection, scrollToSection, section1Ref, section2Ref, section3Ref, section4Ref }) {
   const [language, setLanguage] = useState('en');
   const [flipped, setFlipped] = useState(false);
   const [isOpen, setOpen] = useState(false);
@@ -116,7 +118,7 @@ function Header({ i18n, t,activeSection,setActiveSection, scrollToSection, secti
 
 
   const handleMenuClick = () => {
-    setOpen(false); 
+    setOpen(false);
   }
 
   if (isDarkMode) {
@@ -150,7 +152,7 @@ function Header({ i18n, t,activeSection,setActiveSection, scrollToSection, secti
                 }
               }}
               className={`menu__item ${activeSection === item.key ? 'border-btm' : ''}`}
-              >
+            >
               {item.label}
             </a>
           </li>
@@ -204,7 +206,7 @@ function Header({ i18n, t,activeSection,setActiveSection, scrollToSection, secti
               </a>
             </li>
           ))}
-          <span><a href="/cv.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
+          <span><a href="/cv-portfolio.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
             <rect
               x="0" y="0"
               fill='none'
@@ -218,7 +220,7 @@ function Header({ i18n, t,activeSection,setActiveSection, scrollToSection, secti
     </div>
   )
 }
-function HeaderContent({ i18n, t, section1Ref}) {
+function HeaderContent({ i18n, t, section1Ref }) {
   return (
     <div ref={section1Ref}>
       <div className='header-content'>
@@ -243,7 +245,7 @@ function HeaderContent({ i18n, t, section1Ref}) {
               data-type='["Web Developer","Front-End Developer", "Freelancer"]'
             ></span>
           </h3>
-          <span><a href="/cv.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
+          <span><a href="/cv-portfolio.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
             <rect
               x="0" y="0"
               fill='none'
@@ -303,7 +305,19 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
           ))}
         </div>
         <div className="border-bottom"></div>
-        <p className='lead'>{t('about')}</p>
+        <p className='lead'>
+          <Trans
+            i18nKey="about"
+            components={[
+              <span className="highlight" />,  
+              <span className="highlight" />,  
+              <span className="highlight" />,  
+              <span className="highlight" />,  
+              <span className="highlight" />,  
+              <span className="highlight" />  
+            ]}
+          />
+        </p>
       </div>
       <div id='section2' className={`education section ${visibleSections.section2 ? "left" : ""}`}>
         <div className="keyboard">
@@ -368,30 +382,39 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
         <div className='skills'>
           <div className="skill">
             <img src="/img/html-icon.svg" alt="html" />
+            <div className='tooltip'>Html</div>
           </div>
           <div className="skill">
             <img src="/img/css-icon.svg" alt="css" />
+            <div className='tooltip'>Css</div>
           </div>
           <div className="skill">
             <img src="/img/javascript-icon.svg" alt="javascript" />
+            <div className='tooltip'>Javascript</div>
           </div>
           <div className="skill">
             <img src="/img/react-icon.svg" alt="react" />
+            <div className='tooltip'>React</div>
           </div>
           <div className="skill">
             <img src="/img/bootstrap-icon.svg" alt="bootstrap" />
+            <div className='tooltip'>Bootstrap</div>
           </div>
           <div className="skill">
             <img src="/img/nextjs-icon.svg" alt="nextjs" />
+            <div className='tooltip'>Next.js</div>
           </div>
           <div className="skill">
             <img src="/img/supabase-icon.svg" alt="supabase" />
+            <div className='tooltip'>Supabase</div>
           </div>
           <div className="skill">
             <img src="/img/figma-icon.svg" alt="figma" />
+            <div className='tooltip'>Figma</div>
           </div>
           <div className="skill">
             <img src="/img/git-icon.svg" alt="git" />
+            <div className='tooltip'>Git</div>
           </div>
         </div>
 

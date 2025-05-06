@@ -468,7 +468,28 @@
     .skill {
       display: flex;
       justify-content: center;
+      position: relative;
     }
+    .skill .tooltip {
+      position: absolute;
+      bottom: -30px; 
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #222;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 10;
+    }
+    
+    /* img:hover .tooltip {
+      opacity: 1;
+    } */
     img {
       width: 70px;
       transition: transform 0.3s ease; 
@@ -476,6 +497,9 @@
     }
     img:hover {
       transform: scale(1.1);
+    }
+    .skill img:hover + .tooltip {
+      opacity: 1;
     }
   }
 }
@@ -1300,4 +1324,10 @@ footer {
   100% {
     transform: rotate(360deg);
   }
+}
+
+
+.highlight {
+  color: #f39c12;
+  font-weight: bold;
 }
