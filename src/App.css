@@ -600,6 +600,10 @@
         background-image: url(../public/img/landing-page.png);
         background-position: top;
       }
+      &.item-j{
+        background-image: url(../public/img/invoice-app.png);
+        background-position: top ;
+      }
       h1{
         font-weight: 600;
         position: absolute;
