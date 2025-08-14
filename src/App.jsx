@@ -256,7 +256,7 @@ function HeaderContent({ i18n, t, section1Ref }) {
         <div className="lg-img">
           <div className="home-avatar-box">
             <div className="home-avatar-in">
-              <img src="./img/resim1.jpg" style={{ width: '526px', height: '526px' }} alt="" />
+              <img src="./img/avatar.jpg" style={{ width: '526px', height: '526px' }} alt="" />
             </div>
           </div>
         </div>
@@ -438,10 +438,25 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
                 <h1>Invoice App</h1>
                 <div className="card-back">
                   <a href="https://invoice-app-3y4g.vercel.app/"
-                  target="_blank"
+                    target="_blank"
                     rel="noopener noreferrer">{t('project')}</a>
                   <a href="https://github.com/Atakanarikan0/invoice-app"
-                  target="_blank"
+                    target="_blank"
+                    rel="noopener noreferrer">{t('code')}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4 col-sm-6 col-xs-12">
+            <div className="card">
+              <div className="cover item-k">
+                <h1>Hangman</h1>
+                <div className="card-back">
+                  <a href="https://3adam-hangman-last.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer">{t('project')}</a>
+                  <a href="https://github.com/Atakanarikan0/3adam"
+                    target="_blank"
                     rel="noopener noreferrer">{t('code')}</a>
                 </div>
               </div>
@@ -453,10 +468,25 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
                 <h1>Kanban</h1>
                 <div className="card-back">
                   <a href="https://atakan-berna-ece-g-kdeniz-kanban-task.vercel.app/"
-                  target="_blank"
+                    target="_blank"
                     rel="noopener noreferrer">{t('project')}</a>
                   <a href="https://github.com/Atakanarikan0/200found-kanban-task"
-                  target="_blank"
+                    target="_blank"
+                    rel="noopener noreferrer">{t('code')}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4 col-sm-6 col-xs-12">
+            <div className="card">
+              <div className="cover item-e">
+                <h1>Desserts<br />App</h1>
+                <div className="card-back">
+                  <a href="https://react-product-list-with-cart-toxx.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer">{t('project')}</a>
+                  <a href="https://github.com/Atakanarikan0/react-product-list-with-cart"
+                    target="_blank"
                     rel="noopener noreferrer">{t('code')}</a>
                 </div>
               </div>
@@ -471,7 +501,7 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
                     target="_blank"
                     rel="noopener noreferrer">{t('project')}</a>
                   <a href="https://github.com/Atakanarikan0/kamp-zodyak"
-                  target="_blank"
+                    target="_blank"
                     rel="noopener noreferrer">{t('code')}</a>
                 </div>
               </div>
@@ -482,11 +512,11 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
               <div className="cover item-c">
                 <h1>Entertainment<br />App</h1>
                 <div className="card-back">
-                  <a href="https://entertainment-app-react-iri5.vercel.app/#/" 
-                  target="_blank"
+                  <a href="https://entertainment-app-react-iri5.vercel.app/#/"
+                    target="_blank"
                     rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/entertainment-app-react" 
-                  target="_blank"
+                  <a href="https://github.com/Atakanarikan0/entertainment-app-react"
+                    target="_blank"
                     rel="noopener noreferrer">{t('code')}</a>
                 </div>
               </div>
@@ -498,40 +528,26 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
                 <h1>Where in the World</h1>
                 <div className="card-back">
                   <a href="https://react-countries-app-xi.vercel.app/"
-                  target="_blank"
+                    target="_blank"
                     rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/react-countries-app" 
-                  target="_blank"
+                  <a href="https://github.com/Atakanarikan0/react-countries-app"
+                    target="_blank"
                     rel="noopener noreferrer">{t('code')}</a>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <div className="card">
-              <div className="cover item-e">
-                <h1>Desserts<br />App</h1>
-                <div className="card-back">
-                  <a href="https://react-product-list-with-cart-toxx.vercel.app/"
-                  target="_blank"
-                    rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/react-product-list-with-cart" 
-                  target="_blank"
-                    rel="noopener noreferrer">{t('code')}</a>
-                </div>
-              </div>
-            </div>
-          </div>
+
           <div className="col-md-4 col-sm-6 col-xs-12">
             <div className="card">
               <div className="cover item-f">
                 <h1>DevJobs<br />App</h1>
                 <div className="card-back">
                   <a href="https://devjobs-web-app-ecru.vercel.app/"
-                  target="_blank"
+                    target="_blank"
                     rel="noopener noreferrer">{t('project')}</a>
                   <a href="https://github.com/Atakanarikan0/devjobs-web-app"
-                  target="_blank"
+                    target="_blank"
                     rel="noopener noreferrer">{t('code')}</a>
                 </div>
               </div>
@@ -543,10 +559,10 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
                 <h1>Mortgage<br />Calculator</h1>
                 <div className="card-back">
                   <a href="https://mortgage-calculator-flax-two.vercel.app/"
-                  target="_blank"
+                    target="_blank"
                     rel="noopener noreferrer">{t('project')}</a>
                   <a href="https://github.com/Atakanarikan0/mortgage-calculator"
-                  target="_blank"
+                    target="_blank"
                     rel="noopener noreferrer">{t('code')}</a>
                 </div>
               </div>
@@ -558,10 +574,10 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
                 <h1>Quiz<br />App</h1>
                 <div className="card-back">
                   <a href="https://quiz-app-js-ochre.vercel.app/"
-                  target="_blank"
+                    target="_blank"
                     rel="noopener noreferrer">{t('project')}</a>
                   <a href="https://github.com/Atakanarikan0/quiz-app-js"
-                  target="_blank"
+                    target="_blank"
                     rel="noopener noreferrer">{t('code')}</a>
                 </div>
               </div>
@@ -573,10 +589,10 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
                 <h1>Landing<br />Page</h1>
                 <div className="card-back">
                   <a href="https://ortak-git-calismasi.vercel.app/"
-                  target="_blank"
+                    target="_blank"
                     rel="noopener noreferrer">{t('project')}</a>
                   <a href="https://github.com/Atakanarikan0/ortak-git-calismasi"
-                  target="_blank"
+                    target="_blank"
                     rel="noopener noreferrer">{t('code')}</a>
                 </div>
               </div>
