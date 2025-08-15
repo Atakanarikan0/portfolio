@@ -494,6 +494,21 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
           </div>
           <div className="col-md-4 col-sm-6 col-xs-12">
             <div className="card">
+              <div className="cover item-l">
+                <h1>Dictionary<br />App</h1>
+                <div className="card-back">
+                  <a href="https://dictionary-web-app-react-5osi.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer">{t('project')}</a>
+                  <a href="https://github.com/Atakanarikan0/dictionary-web-app-react"
+                    target="_blank"
+                    rel="noopener noreferrer">{t('code')}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4 col-sm-6 col-xs-12">
+            <div className="card">
               <div className="cover item-b">
                 <h1>Audiophile</h1>
                 <div className="card-back">

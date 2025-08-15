@@ -642,6 +642,7 @@
         background-image: url(../public/img/desserts-app.png);
         background-position: top left;
       }
+
       &.item-f {
         background-image: url(../public/img/devjobs-web-app.png);
       }
@@ -666,6 +667,11 @@
 
       &.item-k {
         background-image: url(../public/img/hangman.png);
+        background-position: top;
+      }
+
+      &.item-l {
+        background-image: url(../public/img/dictionary-web-app.png);
         background-position: top;
       }
 
