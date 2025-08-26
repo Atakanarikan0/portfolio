@@ -509,6 +509,23 @@
       position: relative;
     }
 
+    .skill:last-child {
+      position: relative;
+
+      span {
+        font-size: 10px;
+        color: oklch(0.89 0.15 90.79);
+        border: 1px solid oklch(0.24 0.02 349.84);
+        background: oklch(39.122% 0.04273 348.781);
+        border-radius: 42132px;
+        padding-inline: 4px;
+        position: absolute;
+        right: -24px;
+        top: 0px;
+      }
+
+    }
+
     .skill .tooltip {
       position: absolute;
       bottom: -30px;
@@ -1218,6 +1235,14 @@ footer {
   .skills-box {
     .skills {
       grid-template-columns: repeat(3, 1fr);
+
+      .skill:last-child {
+        span {
+          right: 0;
+          top: 0;
+        }
+
+      }
     }
   }
 
@@ -1457,9 +1482,14 @@ footer {
   .skills-box {
     .skills {
       gap: 50px;
-
+    
       img {
         width: 100px;
+      }
+      .skill:last-child {
+        span {
+          right: 60px;
+        };
       }
     }
   }

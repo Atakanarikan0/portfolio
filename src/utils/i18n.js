@@ -25,7 +25,8 @@ const resources = {
         { key: "about", label: "Hakkımda" },
         { key: "projects", label: "Projeler" },
         { key: "contact", label: "İletişim" }
-      ]
+      ],
+
       
 
     }
@@ -52,7 +53,7 @@ const resources = {
         { key: "about", label: "About" },
         { key: "projects", label: "Projects" },
         { key: "contact", label: "Contact" }
-      ]
+      ],
       
 
     }

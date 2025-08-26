@@ -416,6 +416,11 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
             <img src="/img/git-icon.svg" alt="git" />
             <div className='tooltip'>Git</div>
           </div>
+          <div className="skill">
+            <span>📚 Learning</span>
+            <img src="/img/react-native-icon.svg" alt="React Native" />
+            <div className='tooltip'>React Native</div>
+          </div>
         </div>
 
       </div>
