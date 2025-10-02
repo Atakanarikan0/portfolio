@@ -439,6 +439,21 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
         >
           <div className="col-md-4 col-sm-6 col-xs-12">
             <div className="card">
+              <div className="cover item-m">
+                <h1>Note Taking</h1>
+                <div className="card-back">
+                  <a href="https://note-taking-web-app-ccnm.vercel.app/auth/login"
+                    target="_blank"
+                    rel="noopener noreferrer">{t('project')}</a>
+                  <a href="https://github.com/Atakanarikan0/note-taking-web-app"
+                    target="_blank"
+                    rel="noopener noreferrer">{t('code')}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4 col-sm-6 col-xs-12">
+            <div className="card">
               <div className="cover item-j">
                 <h1>Invoice App</h1>
                 <div className="card-back">

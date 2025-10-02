@@ -637,59 +637,64 @@
       }
 
       &.item-a {
-        background-image: url(../public/img/kanban-web-app.png);
+        background-image: url(/img/kanban-web-app.png);
         background-position: top left;
       }
 
       &.item-b {
-        background-image: url(../public/img/audiophile.png);
+        background-image: url(/img/audiophile.png);
         background-position: top;
       }
 
       &.item-c {
-        background-image: url(../public/img/entertainment-app.png);
+        background-image: url(/img/entertainment-app.png);
         background-position: top;
       }
 
       &.item-d {
-        background-image: url(../public/img/countries-app.png);
+        background-image: url(/img/countries-app.png);
       }
 
       &.item-e {
-        background-image: url(../public/img/desserts-app.png);
+        background-image: url(/img/desserts-app.png);
         background-position: top left;
       }
 
       &.item-f {
-        background-image: url(../public/img/devjobs-web-app.png);
+        background-image: url(/img/devjobs-web-app.png);
       }
 
       &.item-g {
-        background-image: url(../public/img/mortgage-calculator.png);
+        background-image: url(/img/mortgage-calculator.png);
       }
 
       &.item-h {
-        background-image: url(../public/img/js-quiz-app.png);
+        background-image: url(/img/js-quiz-app.png);
       }
 
       &.item-i {
-        background-image: url(../public/img/landing-page.png);
+        background-image: url(/img/landing-page.png);
         background-position: top;
       }
 
       &.item-j {
-        background-image: url(../public/img/invoice-app.png);
+        background-image: url(/img/invoice-app.png);
         background-position: top;
       }
 
       &.item-k {
-        background-image: url(../public/img/hangman.png);
+        background-image: url(/img/hangman.png);
         background-position: top;
       }
 
       &.item-l {
-        background-image: url(../public/img/dictionary-web-app.png);
+        background-image: url(/img/dictionary-web-app.png);
         background-position: top;
+      }
+
+      &.item-m {
+        background-image: url(/img/note-taking.png);
+        background-position: top left;
       }
 
       h1 {
@@ -1482,14 +1487,17 @@ footer {
   .skills-box {
     .skills {
       gap: 50px;
-    
+
       img {
         width: 100px;
       }
+
       .skill:last-child {
         span {
           right: 60px;
-        };
+        }
+
+        ;
       }
     }
   }
