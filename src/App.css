@@ -1146,6 +1146,15 @@ footer {
       }
     }
   }
+  .lg-header-content::before {
+    background-image:
+      radial-gradient(2px 2px at 20px 30px, rgba(0, 0, 0, 0.8) 50%, transparent 50%),
+      radial-gradient(2px 2px at 40px 70px, rgba(0, 0, 0, 0.8) 50%, transparent 50%),
+      radial-gradient(1px 1px at 130px 90px, rgba(0, 0, 0, 0.8) 50%, transparent 50%),
+      radial-gradient(2px 2px at 200px 150px, rgba(0, 0, 0, 0.8) 50%, transparent 50%),
+      radial-gradient(1px 1px at 300px 200px, rgba(0, 0, 0, 0.8) 50%, transparent 50%);
+
+  }
 
   .button {
     color: #333;
@@ -1279,7 +1288,7 @@ footer {
     /* left: 0; */
     opacity: 0.08;
     pointer-events: none;
-    padding-left: 10vh;
+    padding-left: 5vh;
     text-align: left;
 
     h5 {
@@ -1300,12 +1309,10 @@ footer {
     color: rgb(247, 23, 53);
   }
 
-  .container {
+  .header {
     max-width: 1320px;
     margin-inline: auto;
-  }
 
-  .header {
     border-radius: 0 0 40px 40px;
 
     h1 {
@@ -1346,21 +1353,22 @@ footer {
 
   .lg-header-content {
     display: flex;
-    margin-inline: auto;
+    justify-content: center;
     padding-bottom: 100px;
     align-items: center;
-    flex-wrap: wrap;
     min-height: 100vh !important;
     position: relative;
+    overflow: hidden;
+    
+    
 
     .lg-text {
       flex: 0 0 auto;
-      width: 50%;
+      margin-inline: 70px;
     }
 
     .lg-img {
       flex: 0 0 auto;
-      width: 50%;
     }
 
     .home-avatar-box {
@@ -1439,6 +1447,23 @@ footer {
 
   }
 
+  .lg-header-content::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    background-image:
+      radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8) 50%, transparent 50%),
+      radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.6) 50%, transparent 50%),
+      radial-gradient(1px 1px at 130px 90px, rgba(255,255,255,0.7) 50%, transparent 50%),
+      radial-gradient(2px 2px at 200px 150px, rgba(255,255,255,0.9) 50%, transparent 50%),
+      radial-gradient(1px 1px at 300px 200px, rgba(255,255,255,0.6) 50%, transparent 50%);
+    background-repeat: repeat;
+    background-size: 250px 250px;
+    animation: starsMove 120s linear infinite;
+    z-index: 0;
+  }
+
   .button {
     color: #FFF;
     margin-left: 0;
@@ -1459,6 +1484,10 @@ footer {
   }
 
   .main-content {
+    max-width: 1320px;
+    margin-inline: auto;
+
+
     .lead {
       line-height: 50px;
       font-size: 25px;
@@ -1503,6 +1532,10 @@ footer {
   }
 
   footer {
+    max-width: 1320px;
+    margin-inline: auto;
+
+
     border-radius: 40px 40px 0 0;
     background: rgb(2, 34, 59);
     padding-top: 25px;
@@ -1536,6 +1569,17 @@ footer {
 
 
 
+}
+
+@keyframes starsMove {
+  from { background-position: 0 0; }
+  to { background-position: 1000px 1000px; }
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.3; }
 }
 
 @keyframes spin {
