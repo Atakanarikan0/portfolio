@@ -248,7 +248,7 @@
 }
 
 .header-content {
-  background: url(../public/img/avatar.jpg) no-repeat center center/cover;
+  background: url(/img/avatar.webp) no-repeat center center/cover;
   height: 500px;
   text-align: center;
   padding-top: 50%;
@@ -637,64 +637,76 @@
       }
 
       &.item-a {
-        background-image: url(/img/kanban-web-app.png);
+        background-image: url(/img/kanban-web-app.webp);
         background-position: top left;
       }
 
       &.item-b {
-        background-image: url(/img/audiophile.png);
+        background-image: url(/img/audiophile.webp);
         background-position: top;
       }
 
       &.item-c {
-        background-image: url(/img/entertainment-app.png);
+        background-image: url(/img/entertainment-app.webp);
         background-position: top;
       }
 
       &.item-d {
-        background-image: url(/img/countries-app.png);
+        background-image: url(/img/countries-app.webp);
       }
 
       &.item-e {
-        background-image: url(/img/desserts-app.png);
+        background-image: url(/img/desserts-app.webp);
         background-position: top left;
       }
 
       &.item-f {
-        background-image: url(/img/devjobs-web-app.png);
+        background-image: url(/img/devjobs-web-app.webp);
       }
 
       &.item-g {
-        background-image: url(/img/mortgage-calculator.png);
+        background-image: url(/img/mortgage-calculator.webp);
       }
 
       &.item-h {
-        background-image: url(/img/js-quiz-app.png);
+        background-image: url(/img/js-quiz-app.webp);
       }
 
       &.item-i {
-        background-image: url(/img/landing-page.png);
+        background-image: url(/img/landing-page.webp);
         background-position: top;
       }
 
       &.item-j {
-        background-image: url(/img/invoice-app.png);
+        background-image: url(/img/invoice-app.webp);
         background-position: top;
       }
 
       &.item-k {
-        background-image: url(/img/hangman.png);
+        background-image: url(/img/hangman.webp);
         background-position: top;
       }
 
       &.item-l {
-        background-image: url(/img/dictionary-web-app.png);
+        background-image: url(/img/dictionary-web-app.webp);
         background-position: top;
       }
 
       &.item-m {
-        background-image: url(/img/note-taking.png);
+        background-image: url(/img/note-taking.webp);
         background-position: top left;
+      }
+
+      &.item-n {
+        background-image: url(/img/tably-eu.webp);
+      }
+
+      &.item-o {
+        background-image: url(/img/m-four.webp);
+      }
+
+      &.item-p {
+        background-image: url(/img/gurkan-optik.webp);
       }
 
       h1 {
@@ -1378,7 +1390,7 @@ footer {
 
     .home-avatar-box::before {
       content: "";
-      background-image: url(../public/img/dots-effect.png);
+      background-image: url(/img/dots-effect.webp);
       background-size: cover;
       background-position: left center;
       position: absolute;
@@ -1596,4 +1608,7 @@ footer {
 .highlight {
   color: #f39c12;
   font-weight: bold;
+}
+.typewrite > .wrap {
+  border-right: 0.08em solid #fff;
 }
