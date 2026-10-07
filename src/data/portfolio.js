@@ -2,8 +2,8 @@
 // title: satır sonu için \n kullan
 // repo: isteğe bağlı; gizli repolarda boş bırak, "Kod" butonu gösterilmez
 export const projects = [
-  { title: 'Tably', cover: 'item-n', demo: 'https://tably-eu.vercel.app' },
-  { title: 'M-Four', cover: 'item-o', demo: 'https://m-four-opus.vercel.app' },
+  { title: 'Tably.eu', cover: 'item-n', demo: 'https://tably-eu.vercel.app' },
+  { title: 'M-Four\nChairs', cover: 'item-o', demo: 'https://m-four-opus.vercel.app' },
   { title: 'Gürkan\nOptik', cover: 'item-p', demo: 'https://gurkan-optik.vercel.app' },
   { title: 'Note Taking', cover: 'item-m', demo: 'https://note-taking-web-app-ccnm.vercel.app/auth/login', repo: 'https://github.com/Atakanarikan0/note-taking-web-app' },
   { title: 'Invoice App', cover: 'item-j', demo: 'https://invoice-app-3y4g.vercel.app/', repo: 'https://github.com/Atakanarikan0/invoice-app' },
