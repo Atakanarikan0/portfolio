@@ -432,7 +432,7 @@ function ProjectCard({ project, t }) {
           </h1>
           <div className="card-back">
             <a href={project.demo} target="_blank" rel="noopener noreferrer">{t('project')}</a>
-            <a href={project.repo} target="_blank" rel="noopener noreferrer">{t('code')}</a>
+            {project.repo && <a href={project.repo} target="_blank" rel="noopener noreferrer">{t('code')}</a>}
           </div>
         </div>
       </div>

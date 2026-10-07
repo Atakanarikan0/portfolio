@@ -697,6 +697,18 @@
         background-position: top left;
       }
 
+      &.item-n {
+        background-image: url(/img/tably-eu.webp);
+      }
+
+      &.item-o {
+        background-image: url(/img/m-four.webp);
+      }
+
+      &.item-p {
+        background-image: url(/img/gurkan-optik.webp);
+      }
+
       h1 {
         font-weight: 600;
         position: absolute;
