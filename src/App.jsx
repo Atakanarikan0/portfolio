@@ -50,8 +50,12 @@ function App() {
 
 
   useEffect(() => {
-    handleScroll()
-    initializeTypewriter()
+    const cleanupScroll = handleScroll()
+    const cleanupTypewriter = initializeTypewriter()
+    return () => {
+      cleanupScroll()
+      cleanupTypewriter()
+    }
   }, [])
 
   const scrollToSection = (sectionRef) => {
@@ -122,11 +126,9 @@ function Header({ i18n, t, activeSection, setActiveSection, scrollToSection, sec
     setOpen(false);
   }
 
-  if (isDarkMode) {
-    document.body.classList.add('dark-mode')
-  } else {
-    document.body.classList.remove('dark-mode')
-  }
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', isDarkMode)
+  }, [isDarkMode])
 
   const sectionRefs = {
     "home": section1Ref,
@@ -264,9 +266,7 @@ function MainContent({ t, section2Ref, section3Ref }) {
     const sections = document.querySelectorAll(".section");
     sections.forEach((section) => observer.observe(section));
 
-    return () => {
-      sections.forEach((section) => observer.unobserve(section));
-    };
+    return () => observer.disconnect();
   }, []);
   return (
     <section className='main-content'>

@@ -5,8 +5,9 @@ export class TxtType {
     this.loopNum = 0;
     this.period = parseInt(period, 10) || 2000;
     this.txt = '';
-    this.tick();
     this.isDeleting = false;
+    this.timeoutId = null;
+    this.tick();
   }
 
   tick() {
@@ -36,23 +37,26 @@ export class TxtType {
       delta = 500;
     }
 
-    setTimeout(() => this.tick(), delta);
+    this.timeoutId = setTimeout(() => this.tick(), delta);
+  }
+
+  stop() {
+    clearTimeout(this.timeoutId);
+    this.el.innerHTML = '';
   }
 }
 
+// Tüm .typewrite öğelerini başlatır; hepsini durduran bir temizleme fonksiyonu döndürür.
 export const initializeTypewriter = () => {
+  const instances = [];
   const elements = document.getElementsByClassName('typewrite');
   for (let i = 0; i < elements.length; i++) {
     const toRotate = elements[i].getAttribute('data-type');
     const period = elements[i].getAttribute('data-period');
     if (toRotate) {
-      new TxtType(elements[i], JSON.parse(toRotate), period);
+      instances.push(new TxtType(elements[i], JSON.parse(toRotate), period));
     }
   }
 
-  // INJECT CSS for the typewriter effect
-  const css = document.createElement("style");
-  css.type = "text/css";
-  css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff }";
-  document.body.appendChild(css);
+  return () => instances.forEach((instance) => instance.stop());
 };
