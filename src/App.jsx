@@ -363,7 +363,7 @@ function Contact() {
           {socials.map((social) => (
             <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer">{social.label} ↗</a>
           ))}
-          <a href="/cv-portfolio.pdf" download="Atakan Arıkan CV.pdf" className="cv-link">{t('contact.cv')} ↓</a>
+          <a href="/Atakan-Arikan-CV.pdf" download="Atakan-Arıkan-CV.pdf" className="cv-link">{t('contact.cv')} ↓</a>
         </Reveal>
       </div>
     </section>
