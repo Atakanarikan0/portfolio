@@ -256,7 +256,7 @@ function HeaderContent({ i18n, t, section1Ref }) {
         <div className="lg-img">
           <div className="home-avatar-box">
             <div className="home-avatar-in">
-              <img src="./img/avatar.jpg" style={{ width: '526px', height: '526px' }} alt="" />
+              <img src="/img/avatar.webp" style={{ width: '526px', height: '526px' }} alt="" />
             </div>
           </div>
         </div>
