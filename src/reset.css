@@ -6,18 +6,6 @@
   margin: 0;
 }
 
-body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  font-family: 'Prompt', sans-serif;
-  background: #f1f1f1;
-  height: 100vh;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-  background: rgb(1, 22, 39);
-  color: #FFF;
-
-}
 
 
 img, picture, video, canvas, svg {
