@@ -89,14 +89,14 @@ function App() {
           setActiveSection={setActiveSection}
           i18n={i18n} t={t} />
 
-        <HeaderContent i18n={i18n} t={t} section1Ref={section1Ref} />
+        <HeaderContent t={t} section1Ref={section1Ref} />
         <MainContent
           section1Ref={section1Ref}
           section2Ref={section2Ref}
           section3Ref={section3Ref}
-          i18n={i18n} t={t}
+          t={t}
         />
-        <Content section4Ref={section4Ref} i18n={i18n} t={t} />
+        <Content section4Ref={section4Ref} t={t} />
       </div>
     </>
   )
@@ -210,7 +210,7 @@ function Header({ i18n, t, activeSection, setActiveSection, scrollToSection, sec
     </div>
   )
 }
-function HeaderContent({ i18n, t, section1Ref }) {
+function HeaderContent({ t, section1Ref }) {
   return (
     <div ref={section1Ref}>
       <div className='header-content'>
@@ -236,7 +236,7 @@ function HeaderContent({ i18n, t, section1Ref }) {
     </div>
   )
 }
-function MainContent({ i18n, t, section2Ref, section3Ref }) {
+function MainContent({ t, section2Ref, section3Ref }) {
   const [visibleSections, setVisibleSections] = useState({
     section1: false,
     section2: false,
@@ -280,14 +280,7 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
         <p className='lead'>
           <Trans
             i18nKey="about"
-            components={[
-              <span className="highlight" />,
-              <span className="highlight" />,
-              <span className="highlight" />,
-              <span className="highlight" />,
-              <span className="highlight" />,
-              <span className="highlight" />
-            ]}
+            components={{ hl: <span className="highlight" /> }}
           />
         </p>
       </div>
@@ -384,7 +377,7 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
 
   )
 }
-function Content({ i18n, t, section4Ref }) {
+function Content({ t, section4Ref }) {
   return (
     <footer ref={section4Ref}>
       <div className="footer-text">
