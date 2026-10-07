@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import './App.css'
 import { initializeTypewriter } from './utils/type-writer'
 import { handleScroll } from './utils/scrollEffect'
@@ -6,6 +6,7 @@ import { motion } from "motion/react"
 import './utils/i18n'
 import { useTranslation } from 'react-i18next'
 import { Trans } from 'react-i18next';
+import { projects, skills } from './data/portfolio'
 
 
 function App() {
@@ -133,6 +134,15 @@ function Header({ i18n, t, activeSection, setActiveSection, scrollToSection, sec
     "projects": section3Ref,
     "contact": section4Ref
   };
+  const goToSection = (e, key) => {
+    e.preventDefault();
+    const ref = sectionRefs[key];
+    if (ref?.current) {
+      scrollToSection(ref);
+      setActiveSection(key);
+    }
+  };
+
   return (
     <div className="header">
       <h1>Port<span>folio</span></h1>
@@ -141,16 +151,7 @@ function Header({ i18n, t, activeSection, setActiveSection, scrollToSection, sec
           <li key={index}>
             <a
               href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                const ref = sectionRefs[item.key];
-                console.log(ref);
-                if (ref?.current) {
-                  scrollToSection(ref);
-                  setActiveSection(item.key); // tıklanınca da aktifliği güncelle
-
-                }
-              }}
+              onClick={(e) => goToSection(e, item.key)}
               className={`menu__item ${activeSection === item.key ? 'border-btm' : ''}`}
             >
               {item.label}
@@ -192,13 +193,8 @@ function Header({ i18n, t, activeSection, setActiveSection, scrollToSection, sec
               <a
                 href="#"
                 onClick={(e) => {
-                  e.preventDefault();
-                  const ref = sectionRefs[item.key];
-                  console.log(ref);
-                  if (ref?.current) {
-                    scrollToSection(ref);
-                    handleMenuClick();
-                  }
+                  goToSection(e, item.key);
+                  handleMenuClick();
                 }}
                 className="menu__item"
               >
@@ -206,13 +202,7 @@ function Header({ i18n, t, activeSection, setActiveSection, scrollToSection, sec
               </a>
             </li>
           ))}
-          <span><a href="/cv-portfolio.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
-            <rect
-              x="0" y="0"
-              fill='none'
-              width="100%"
-              height="100%" />
-          </svg></a></span>
+          <CvButton />
 
         </ul>
       </div>
@@ -226,32 +216,14 @@ function HeaderContent({ i18n, t, section1Ref }) {
       <div className='header-content'>
         <div className="overlay"></div>
         <div className='text'>
-          <h3><span className='small-size'>{t('welcome')} <br /></span>
-            Atakan <span className='username'>Arıkan</span> <br /><span
-              className="typewrite"
-              data-period="1000"
-              data-type='["Web Developer","Front-End Developer", "Freelancer"]'
-            ></span>
-          </h3>
+          <HeroTitle t={t} />
 
         </div>
       </div>
       <div className='lg-header-content'>
         <div className="lg-text">
-          <h3><span className='small-size'>{t('welcome')} <br /></span>
-            Atakan <span className='username'>Arıkan</span> <br /><span
-              className="typewrite"
-              data-period="1000"
-              data-type='["Web Developer","Front-End Developer", "Freelancer"]'
-            ></span>
-          </h3>
-          <span><a href="/cv-portfolio.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
-            <rect
-              x="0" y="0"
-              fill='none'
-              width="100%"
-              height="100%" />
-          </svg></a></span>
+          <HeroTitle t={t} />
+          <CvButton />
         </div>
         <div className="lg-img">
           <div className="home-avatar-box">
@@ -380,47 +352,13 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
         </div>
         <div className="border-bottom"></div>
         <div className='skills'>
-          <div className="skill">
-            <img src="/img/html-icon.svg" alt="html" />
-            <div className='tooltip'>Html</div>
-          </div>
-          <div className="skill">
-            <img src="/img/css-icon.svg" alt="css" />
-            <div className='tooltip'>Css</div>
-          </div>
-          <div className="skill">
-            <img src="/img/javascript-icon.svg" alt="javascript" />
-            <div className='tooltip'>Javascript</div>
-          </div>
-          <div className="skill">
-            <img src="/img/react-icon.svg" alt="react" />
-            <div className='tooltip'>React</div>
-          </div>
-          <div className="skill">
-            <img src="/img/bootstrap-icon.svg" alt="bootstrap" />
-            <div className='tooltip'>Bootstrap</div>
-          </div>
-          <div className="skill">
-            <img src="/img/nextjs-icon.svg" alt="nextjs" />
-            <div className='tooltip'>Next.js</div>
-          </div>
-          <div className="skill">
-            <img src="/img/supabase-icon.svg" alt="supabase" />
-            <div className='tooltip'>Supabase</div>
-          </div>
-          <div className="skill">
-            <img src="/img/figma-icon.svg" alt="figma" />
-            <div className='tooltip'>Figma</div>
-          </div>
-          <div className="skill">
-            <img src="/img/git-icon.svg" alt="git" />
-            <div className='tooltip'>Git</div>
-          </div>
-          <div className="skill">
-            <span>📚 Learning</span>
-            <img src="/img/react-native-icon.svg" alt="React Native" />
-            <div className='tooltip'>React Native</div>
-          </div>
+          {skills.map((skill) => (
+            <div className="skill" key={skill.name}>
+              {skill.learning && <span>📚 Learning</span>}
+              <img src={skill.icon} alt={skill.name} />
+              <div className='tooltip'>{skill.name}</div>
+            </div>
+          ))}
         </div>
 
       </div>
@@ -437,203 +375,9 @@ function MainContent({ i18n, t, section2Ref, section3Ref }) {
           transition={{ duration: 1 }}
           className="row"
         >
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <div className="card">
-              <div className="cover item-m">
-                <h1>Note Taking</h1>
-                <div className="card-back">
-                  <a href="https://note-taking-web-app-ccnm.vercel.app/auth/login"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/note-taking-web-app"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('code')}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <div className="card">
-              <div className="cover item-j">
-                <h1>Invoice App</h1>
-                <div className="card-back">
-                  <a href="https://invoice-app-3y4g.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/invoice-app"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('code')}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <div className="card">
-              <div className="cover item-k">
-                <h1>Hangman</h1>
-                <div className="card-back">
-                  <a href="https://3adam-hangman-last.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/3adam"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('code')}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <div className="card">
-              <div className="cover item-a">
-                <h1>Kanban</h1>
-                <div className="card-back">
-                  <a href="https://atakan-berna-ece-g-kdeniz-kanban-task.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/200found-kanban-task"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('code')}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <div className="card">
-              <div className="cover item-e">
-                <h1>Desserts<br />App</h1>
-                <div className="card-back">
-                  <a href="https://react-product-list-with-cart-toxx.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/react-product-list-with-cart"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('code')}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <div className="card">
-              <div className="cover item-l">
-                <h1>Dictionary<br />App</h1>
-                <div className="card-back">
-                  <a href="https://dictionary-web-app-react-5osi.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/dictionary-web-app-react"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('code')}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <div className="card">
-              <div className="cover item-b">
-                <h1>Audiophile</h1>
-                <div className="card-back">
-                  <a href="https://kamp-zodyak-flame.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/kamp-zodyak"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('code')}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <div className="card">
-              <div className="cover item-c">
-                <h1>Entertainment<br />App</h1>
-                <div className="card-back">
-                  <a href="https://entertainment-app-react-iri5.vercel.app/#/"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/entertainment-app-react"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('code')}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <div className="card">
-              <div className="cover item-d">
-                <h1>Where in the World</h1>
-                <div className="card-back">
-                  <a href="https://react-countries-app-xi.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/react-countries-app"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('code')}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <div className="card">
-              <div className="cover item-f">
-                <h1>DevJobs<br />App</h1>
-                <div className="card-back">
-                  <a href="https://devjobs-web-app-ecru.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/devjobs-web-app"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('code')}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <div className="card">
-              <div className="cover item-g">
-                <h1>Mortgage<br />Calculator</h1>
-                <div className="card-back">
-                  <a href="https://mortgage-calculator-flax-two.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/mortgage-calculator"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('code')}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <div className="card">
-              <div className="cover item-h">
-                <h1>Quiz<br />App</h1>
-                <div className="card-back">
-                  <a href="https://quiz-app-js-ochre.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/quiz-app-js"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('code')}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <div className="card">
-              <div className="cover item-i">
-                <h1>Landing<br />Page</h1>
-                <div className="card-back">
-                  <a href="https://ortak-git-calismasi.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('project')}</a>
-                  <a href="https://github.com/Atakanarikan0/ortak-git-calismasi"
-                    target="_blank"
-                    rel="noopener noreferrer">{t('code')}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
+          {projects.map((project) => (
+            <ProjectCard key={project.title} project={project} t={t} />
+          ))}
         </motion.div>
       </div>
     </section>
@@ -655,6 +399,51 @@ function Content({ i18n, t, section4Ref }) {
       </div>
 
     </footer>
+  )
+}
+
+function HeroTitle({ t }) {
+  return (
+    <h3><span className='small-size'>{t('welcome')} <br /></span>
+      Atakan <span className='username'>Arıkan</span> <br /><span
+        className="typewrite"
+        data-period="1000"
+        data-type='["Web Developer","Front-End Developer", "Freelancer"]'
+      ></span>
+    </h3>
+  )
+}
+
+function CvButton() {
+  return (
+    <span><a href="/cv-portfolio.pdf" download="Atakan Arıkan CV.pdf" className='button'>CV<i className="fa-solid fa-download"></i><svg>
+      <rect
+        x="0" y="0"
+        fill='none'
+        width="100%"
+        height="100%" />
+    </svg></a></span>
+  )
+}
+
+function ProjectCard({ project, t }) {
+  const titleLines = project.title.split('\n');
+  return (
+    <div className="col-md-4 col-sm-6 col-xs-12">
+      <div className="card">
+        <div className={`cover ${project.cover}`}>
+          <h1>
+            {titleLines.map((line, index) => (
+              <Fragment key={index}>{line}{index < titleLines.length - 1 && <br />}</Fragment>
+            ))}
+          </h1>
+          <div className="card-back">
+            <a href={project.demo} target="_blank" rel="noopener noreferrer">{t('project')}</a>
+            <a href={project.repo} target="_blank" rel="noopener noreferrer">{t('code')}</a>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
