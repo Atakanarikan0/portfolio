@@ -27,4 +27,4 @@ export const socials = [
   { label: 'Instagram', href: 'https://www.instagram.com/atakan.arikann' },
 ];
 
-export const email = 'atakarkn0@outlook.com';
+export const email = 'atakanarkn1@outlook.com';
