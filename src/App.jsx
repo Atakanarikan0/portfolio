@@ -161,10 +161,6 @@ function Hero() {
       >
         <p className="hero-role">{t('hero.role')}</p>
         <p className="hero-lead">{t('hero.lead')}</p>
-        <a href="#work" className="scroll-cue">
-          <span>{t('hero.scroll')}</span>
-          <span className="scroll-line" />
-        </a>
       </motion.div>
     </section>
   )

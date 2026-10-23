@@ -313,7 +313,7 @@ section[id] {
 
 .hero-bottom {
   display: grid;
-  grid-template-columns: 1fr 1.2fr auto;
+  grid-template-columns: 1fr 1.2fr;
   align-items: end;
   gap: 40px;
 }
@@ -332,38 +332,6 @@ section[id] {
   line-height: 1.25;
   margin: 0;
   max-width: 30ch;
-}
-
-.scroll-cue {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  font-size: 11px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.scroll-line {
-  width: 1px;
-  height: 64px;
-  background: var(--line-strong);
-  position: relative;
-  overflow: hidden;
-}
-
-.scroll-line::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--text);
-  animation: scroll-line 2.4s var(--ease) infinite;
-}
-
-@keyframes scroll-line {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
 }
 
 /* ───────────── Marquee ───────────── */
@@ -956,10 +924,6 @@ section[id] {
     grid-template-columns: 1fr 1fr;
   }
 
-  .scroll-cue {
-    display: none;
-  }
-
   .archive-head,
   .archive-hit {
     grid-template-columns: 50px 1.6fr 1fr 60px;
@@ -1116,8 +1080,7 @@ section[id] {
 @media (prefers-reduced-motion: reduce) {
   .grain,
   .marquee-track,
-  .pulse,
-  .scroll-line::after {
+  .pulse {
     animation: none;
   }
 

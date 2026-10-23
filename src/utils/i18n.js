@@ -11,7 +11,6 @@ const resources = {
         status: "Yeni projelere açık",
         role: "Frontend Developer",
         lead: "Markalar için zarif, hızlı ve detaylarına özen gösterilmiş web deneyimleri tasarlayıp geliştiriyorum.",
-        scroll: "Kaydır",
       },
       work: {
         label: "Seçili İşler",
@@ -63,7 +62,6 @@ const resources = {
         status: "Available for new projects",
         role: "Frontend Developer",
         lead: "I design and build refined, fast and meticulously crafted web experiences for brands.",
-        scroll: "Scroll",
       },
       work: {
         label: "Selected Work",
