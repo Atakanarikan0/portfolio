@@ -6,6 +6,8 @@ import './utils/i18n'
 import { projects, skills, socials, email } from './data/portfolio'
 
 const EASE = [0.22, 1, 0.36, 1]
+const CV_PATH = '/Atakan-Arikan-CV.pdf'
+const CV_FILENAME = 'Atakan-Arıkan-CV.pdf'
 
 function readTheme() {
   try {
@@ -45,6 +47,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <CvButton />
     </MotionConfig>
   )
 }
@@ -359,7 +362,7 @@ function Contact() {
           {socials.map((social) => (
             <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer">{social.label} ↗</a>
           ))}
-          <a href="/Atakan-Arikan-CV.pdf" download="Atakan-Arıkan-CV.pdf" className="cv-link">{t('contact.cv')} ↓</a>
+          <a href={CV_PATH} download={CV_FILENAME} className="cv-link">{t('contact.cv')} ↓</a>
         </Reveal>
       </div>
     </section>
@@ -390,6 +393,28 @@ function Footer() {
         <a href="#top">{t('footer.top')} ↑</a>
       </div>
     </footer>
+  )
+}
+
+// Sağ altta sabit duran CV butonu; hover/focus olunca etiketi açılır
+function CvButton() {
+  const { t } = useTranslation()
+
+  return (
+    <motion.a
+      href={CV_PATH}
+      download={CV_FILENAME}
+      className="cv-fab"
+      aria-label={t('contact.cv')}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: EASE, delay: 1.4 }}
+    >
+      <span className="cv-fab-label">{t('contact.cv')}</span>
+      <svg className="cv-fab-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+        <path d="M12 4v11m0 0-5-5m5 5 5-5M5 20h14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </motion.a>
   )
 }
 
