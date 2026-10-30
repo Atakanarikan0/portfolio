@@ -206,7 +206,7 @@ function FeaturedWork() {
           <Reveal key={project.title} className={`featured-item featured-item--${index + 1}`}>
             <a href={project.demo} target="_blank" rel="noopener noreferrer" className="featured-link">
               <div className="featured-media">
-                <img src={project.image} alt={project.title} loading="lazy" />
+                <img src={project.image} alt={project.title} loading="lazy" style={project.focus ? { objectPosition: project.focus } : undefined} />
                 <span className="featured-cta">{t('work.visit')} ↗</span>
               </div>
               <div className="featured-info">
@@ -228,6 +228,7 @@ function FeaturedWork() {
 function Archive() {
   const { t } = useTranslation()
   const archive = projects.filter((project) => !project.featured)
+  const featuredCount = projects.length - archive.length
   const previewRef = useRef(null)
   const [active, setActive] = useState(null)
 
@@ -258,7 +259,7 @@ function Archive() {
         {archive.map((project, index) => (
           <Reveal key={project.title} className="archive-row" delay={Math.min(index * 0.03, 0.3)}>
             <div className="archive-hit" onMouseEnter={() => setActive(project)}>
-              <span className="archive-index">{String(index + 4).padStart(2, '0')}</span>
+              <span className="archive-index">{String(index + featuredCount + 1).padStart(2, '0')}</span>
               <span className="archive-title">
                 {project.title}
                 <small>

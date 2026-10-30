@@ -27,6 +27,8 @@ const resources = {
       projects: {
         tably: "7 sayfalık interaktif marka sitesi. .glb formatındaki 3B ürün modelini React Three Fiber ile yükleyip GSAP ScrollTrigger animasyonlarıyla senkronize ettim.",
         mfour: "TR/EN iki dilli, 10 sayfa ve 41 bileşenden oluşan ürün sitesi. Sözlük tabanlı i18n kurdum; Lighthouse'ta Performans 94, diğer üç kategoride 100.",
+        zein: "Türk mobilya üreticisi için EN/DE/TR üç dilli, 85 ürünlük katalog sitesi. 6 tabla formu ve mermer seçenekleriyle canlı bir masa yapılandırıcısı kurdum; ürün sayfalarını fotoğraf klasörlerinden otomatik üreten bir görsel optimizasyon betiği yazdım.",
+        krampon: "Adidas, Nike ve Puma kramponları satan mağaza için 10 sayfalık vitrin sitesi. Marka ve ürün sayfaları, beden rehberi ve WhatsApp üzerinden sipariş akışı; GSAP ScrollTrigger ve Lenis ile hareketli bir deneyim.",
         gurkan: "8 sayfa ve 34 bileşenden oluşan marka sitesi. GSAP animasyonlarını Lenis smooth scroll ile birleştirdim; Lighthouse'ta Performans 92, diğer üç kategoride 100.",
         noteTaking: "Supabase Auth ve Realtime",
         invoice: "Context API, localStorage",
@@ -39,16 +41,17 @@ const resources = {
         ecommerce: "E-ticaret",
         tool: "Araç",
         landing: "Açılış Sayfası",
+        showcase: "Vitrin Sitesi",
       },
       experience: {
         label: "Deneyim",
         title: "Gerçek <i>müşteriler</i>, canlı projeler",
         role: "Freelance Web Developer",
         period: "Haziran 2026 — Günümüz",
-        clients: "Tably.eu · Gürkan Optik · M-Four Chairs",
+        clients: "Tably.eu · M-Four Chairs · Gürkan Optik · Zein Möbel · Krampon Center",
         stats: [
-          { value: "3", label: "Müşteri" },
-          { value: "25", label: "Sayfa yayında" },
+          { value: "5", label: "Müşteri" },
+          { value: "35+", label: "Sayfa yayında" },
           { value: "100", label: "Lighthouse SEO / Erişilebilirlik" },
         ],
         points: [
@@ -106,6 +109,8 @@ const resources = {
       projects: {
         tably: "An interactive 7-page brand site. I loaded a .glb 3D product model with React Three Fiber and synced it with GSAP ScrollTrigger animations.",
         mfour: "A bilingual (TR/EN) product site with 10 pages and 41 components, built on dictionary-based i18n. Lighthouse Performance 94 and 100 in the other three categories.",
+        zein: "A trilingual (EN/DE/TR) catalogue site with 85 products for a Turkish furniture maker. I built a live table configurator with 6 top shapes and marble options, and an image pipeline that generates product pages from photo folders.",
+        krampon: "A 10-page showcase site for a football boot store selling Adidas, Nike and Puma. Brand and product pages, a size guide and a WhatsApp ordering flow, brought to life with GSAP ScrollTrigger and Lenis.",
         gurkan: "An 8-page, 34-component brand site combining GSAP animation with Lenis smooth scroll. Lighthouse Performance 92 and 100 in the other three categories.",
         noteTaking: "Supabase Auth & Realtime",
         invoice: "Context API, localStorage",
@@ -118,16 +123,17 @@ const resources = {
         ecommerce: "E-commerce",
         tool: "Tool",
         landing: "Landing Page",
+        showcase: "Showcase Site",
       },
       experience: {
         label: "Experience",
         title: "Real <i>clients</i>, live projects",
         role: "Freelance Web Developer",
         period: "June 2026 — Present",
-        clients: "Tably.eu · Gürkan Optik · M-Four Chairs",
+        clients: "Tably.eu · M-Four Chairs · Gürkan Optik · Zein Möbel · Krampon Center",
         stats: [
-          { value: "3", label: "Clients" },
-          { value: "25", label: "Pages shipped" },
+          { value: "5", label: "Clients" },
+          { value: "35+", label: "Pages shipped" },
           { value: "100", label: "Lighthouse SEO / Accessibility" },
         ],
         points: [

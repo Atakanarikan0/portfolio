@@ -432,6 +432,16 @@ section[id] {
   margin-top: clamp(80px, 14vw, 240px);
 }
 
+/* 4. ve 5. kart: 2-3 çiftinin aynası */
+.featured-item--4 {
+  grid-column: 1 / span 5;
+}
+
+.featured-item--5 {
+  grid-column: 6 / -1;
+  margin-top: clamp(80px, 14vw, 240px);
+}
+
 .featured-link {
   display: block;
 }
@@ -447,7 +457,8 @@ section[id] {
   aspect-ratio: 16 / 8;
 }
 
-.featured-item--3 .featured-media {
+.featured-item--3 .featured-media,
+.featured-item--4 .featured-media {
   aspect-ratio: 4 / 5;
 }
 
@@ -1205,13 +1216,16 @@ section[id] {
 
   .featured-item--1,
   .featured-item--2,
-  .featured-item--3 {
+  .featured-item--3,
+  .featured-item--4,
+  .featured-item--5 {
     grid-column: auto;
     margin-top: 0;
   }
 
   .featured-item--1 .featured-media,
-  .featured-item--3 .featured-media {
+  .featured-item--3 .featured-media,
+  .featured-item--4 .featured-media {
     aspect-ratio: 16 / 11;
   }
 
