@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, MotionConfig, useReducedMotion, useScroll, useTransform } from 'motion/react'
+import { motion, MotionConfig } from 'motion/react'
 import { Trans, useTranslation } from 'react-i18next'
 import './App.css'
 import './utils/i18n'
@@ -187,9 +187,55 @@ function Marquee() {
   )
 }
 
+// Ortada yuvarlak bir merkez, ondan çıkan dalların ucunda projeler.
+// Bir projenin üzerine gelince proje büyür ve merkez o projenin detaylarını gösterir.
+function orbitLayout(count) {
+  return Array.from({ length: count }, (_, i) => {
+    const angle = ((-90 + (i * 360) / count) * Math.PI) / 180
+    return { x: 50 + 38 * Math.cos(angle), y: 50 + 37 * Math.sin(angle) }
+  })
+}
+
+// Dal: merkez halkanın kenarından başlar, projenin kenarında biter; hafif kavislidir
+function branchPath(node, size) {
+  const cx = size.w / 2
+  const cy = size.h / 2
+  const nx = (node.x / 100) * size.w
+  const ny = (node.y / 100) * size.h
+  const len = Math.hypot(nx - cx, ny - cy) || 1
+  const ux = (nx - cx) / len
+  const uy = (ny - cy) / len
+  const sx = cx + ux * (size.core / 2 + 22)
+  const sy = cy + uy * (size.core / 2 + 22)
+  const ex = nx - ux * (size.node / 2 + 10)
+  const ey = ny - uy * (size.node / 2 + 10)
+  const qx = (sx + ex) / 2 - uy * 28
+  const qy = (sy + ey) / 2 + ux * 28
+  return `M${sx.toFixed(1)} ${sy.toFixed(1)} Q${qx.toFixed(1)} ${qy.toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)}`
+}
+
 function FeaturedWork() {
   const { t } = useTranslation()
   const featured = projects.filter((project) => project.featured)
+  const layout = orbitLayout(featured.length)
+  const [active, setActive] = useState(null)
+  const current = active === null ? null : featured[active]
+  const orbitRef = useRef(null)
+  const [size, setSize] = useState(null)
+
+  useEffect(() => {
+    const el = orbitRef.current
+    if (!el) return
+    const measure = () => {
+      const core = el.querySelector('.orbit-core')
+      const thumb = el.querySelector('.orbit-thumb')
+      setSize({ w: el.clientWidth, h: el.clientHeight, core: core?.offsetWidth || 0, node: thumb?.offsetWidth || 0 })
+    }
+    measure()
+    const observer = new ResizeObserver(measure)
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section className="section" id="work">
@@ -201,63 +247,77 @@ function FeaturedWork() {
         <Reveal className="section-count">{String(featured.length).padStart(2, '0')}</Reveal>
       </div>
 
-      <div className="featured">
+      <div ref={orbitRef} className={`orbit ${current ? 'has-active' : ''}`} onMouseLeave={() => setActive(null)}>
+        {size && (
+        <svg className="orbit-branches" viewBox={`0 0 ${size.w} ${size.h}`} aria-hidden="true">
+          {layout.map((node, index) => (
+            <motion.path
+              key={index}
+              d={branchPath(node, size)}
+              className={active === index ? 'is-active' : undefined}
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true, margin: '-15% 0px' }}
+              transition={{ duration: 1.4, ease: EASE, delay: 0.3 + index * 0.12 }}
+            />
+          ))}
+        </svg>
+        )}
+
+        <motion.div
+          className="orbit-core"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: '-15% 0px' }}
+          transition={{ duration: 1.1, ease: EASE }}
+        >
+          <span className="orbit-ring" aria-hidden="true" />
+          {current ? (
+            <div className="orbit-core-content" key={current.key}>
+              <span className="orbit-core-index">{String(active + 1).padStart(2, '0')} / {String(featured.length).padStart(2, '0')}</span>
+              <h3 className="orbit-core-title">{current.title}</h3>
+              <span className="orbit-core-meta">{t(`categories.${current.category}`)} · {current.year}</span>
+              <p className="orbit-core-desc">{t(`projects.${current.key}`)}</p>
+              <span className="orbit-core-stack">{current.stack}</span>
+            </div>
+          ) : (
+            <div className="orbit-core-content is-idle" key="idle">
+              <span className="orbit-core-count">{String(featured.length).padStart(2, '0')}</span>
+              <span className="orbit-core-meta">{t('work.clientProjects')}</span>
+              <span className="orbit-core-hint">{t('work.hoverHint')}</span>
+            </div>
+          )}
+        </motion.div>
+
         {featured.map((project, index) => (
-          <Reveal key={project.title} className={`featured-item featured-item--${index + 1}`}>
-            <FloatCard project={project} index={index} speed={FLOAT_SPEEDS[index % FLOAT_SPEEDS.length]} />
-          </Reveal>
+          <motion.a
+            key={project.key}
+            href={project.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`orbit-node ${active === index ? 'is-active' : ''} ${layout[index].y < 30 && Math.abs(layout[index].x - 50) < 20 ? 'orbit-node--side' : ''}`}
+            style={{ '--x': `${layout[index].x}%`, '--y': `${layout[index].y}%` }}
+            onMouseEnter={() => setActive(index)}
+            onFocus={() => setActive(index)}
+            onBlur={() => setActive(null)}
+            initial={{ opacity: 0, scale: 0.6 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: '-15% 0px' }}
+            transition={{ duration: 0.9, ease: EASE, delay: 0.9 + index * 0.12 }}
+          >
+            <span className="orbit-thumb">
+              <img src={project.image} alt="" loading="lazy" style={project.focus ? { objectPosition: project.focus } : undefined} />
+            </span>
+            <span className="orbit-label">
+              <span className="orbit-title">{project.title}</span>
+              <span className="orbit-meta">{t(`categories.${project.category}`)} · {project.year}</span>
+              <span className="orbit-desc">{t(`projects.${project.key}`)}</span>
+              <span className="orbit-visit">{t('work.visit')} ↗</span>
+            </span>
+          </motion.a>
         ))}
       </div>
     </section>
-  )
-}
-
-// Yüzen galeri: her kart kaydırırken kendi hızında süzülür (büyük sayı = daha hızlı)
-const FLOAT_SPEEDS = [0.35, 1.15, 0.75, 0.3, 1.05]
-
-function FloatCard({ project, index, speed }) {
-  const { t } = useTranslation()
-  const ref = useRef(null)
-  const reduceMotion = useReducedMotion()
-  const [compact, setCompact] = useState(() => window.matchMedia('(max-width: 720px)').matches)
-
-  useEffect(() => {
-    const query = window.matchMedia('(max-width: 720px)')
-    const update = () => setCompact(query.matches)
-    query.addEventListener('change', update)
-    return () => query.removeEventListener('change', update)
-  }, [])
-
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const range = reduceMotion ? 0 : speed * (compact ? 50 : 170)
-  const y = useTransform(scrollYProgress, [0, 1], [range, -range])
-  const imageY = useTransform(scrollYProgress, [0, 1], reduceMotion ? ['0%', '0%'] : ['-6%', '6%'])
-
-  return (
-    <motion.a
-      ref={ref}
-      href={project.demo}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="featured-link"
-      style={{ y }}
-    >
-      <div className="featured-media">
-        <motion.div className="featured-parallax" style={{ y: imageY }}>
-          <img src={project.image} alt={project.title} loading="lazy" style={project.focus ? { objectPosition: project.focus } : undefined} />
-        </motion.div>
-        <span className="featured-cta">{t('work.visit')} ↗</span>
-      </div>
-      <div className="featured-info">
-        <div className="featured-heading">
-          <span className="featured-index">{String(index + 1).padStart(2, '0')}</span>
-          <h3>{project.title}</h3>
-        </div>
-        <span className="featured-meta">{t('work.client')} · {t(`categories.${project.category}`)} · {project.year}</span>
-        <p className="featured-desc">{t(`projects.${project.key}`)}</p>
-        <span className="featured-stack">{project.stack}</span>
-      </div>
-    </motion.a>
   )
 }
 
