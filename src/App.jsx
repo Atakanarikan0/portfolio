@@ -43,6 +43,7 @@ function App() {
         <Marquee />
         <FeaturedWork />
         <Archive />
+        <Experience />
         <About />
         <Contact />
       </main>
@@ -102,11 +103,12 @@ function Nav({ theme, setTheme }) {
       </a>
       <nav className="nav-links" aria-label="Main">
         <a href="#work">{t('nav.work')}</a>
+        <a href="#experience">{t('nav.experience')}</a>
         <a href="#about">{t('nav.about')}</a>
         <a href="#contact">{t('nav.contact')}</a>
       </nav>
       <div className="nav-actions">
-        <button className="text-btn" onClick={() => i18n.changeLanguage(nextLang)} aria-label={nextLang === 'tr' ? 'Türkçe' : 'English'}>
+        <button className="text-btn" onClick={() => i18n.changeLanguage(nextLang)} aria-label={`EN/TR — ${t('lang')}`}>
           <span className={i18n.language === 'en' ? 'is-active' : ''}>EN</span>
           <span className="slash">/</span>
           <span className={i18n.language === 'tr' ? 'is-active' : ''}>TR</span>
@@ -144,7 +146,7 @@ function Hero() {
         className="hero-meta"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, delay: 0.9 }}
+        transition={{ duration: 0.9, delay: 0.5 }}
       >
         <span>{t('hero.eyebrow')}</span>
         <span>{t('hero.location')}</span>
@@ -158,9 +160,9 @@ function Hero() {
 
       <motion.div
         className="hero-bottom"
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, ease: EASE, delay: 0.8 }}
+        transition={{ duration: 0.8, ease: EASE, delay: 0.25 }}
       >
         <p className="hero-role">{t('hero.role')}</p>
         <p className="hero-lead">{t('hero.lead')}</p>
@@ -210,7 +212,8 @@ function FeaturedWork() {
               <div className="featured-info">
                 <span className="featured-index">{String(index + 1).padStart(2, '0')}</span>
                 <h3>{project.title}</h3>
-                <span className="featured-meta">{t(`categories.${project.category}`)}</span>
+                <p className="featured-desc">{t(`projects.${project.key}`)}</p>
+                <span className="featured-meta">{t('work.client')} · {t(`categories.${project.category}`)}</span>
                 <span className="featured-meta">{project.stack}</span>
                 <span className="featured-meta">{project.year}</span>
               </div>
@@ -258,7 +261,10 @@ function Archive() {
               <span className="archive-index">{String(index + 4).padStart(2, '0')}</span>
               <span className="archive-title">
                 {project.title}
-                <small>{t(`categories.${project.category}`)}</small>
+                <small>
+                  {t(`categories.${project.category}`)}
+                  {project.key && <> · {t(`projects.${project.key}`)}</>}
+                </small>
               </span>
               <span className="archive-stack">{project.stack}</span>
               <span className="archive-year">{project.year}</span>
@@ -286,6 +292,47 @@ function Archive() {
   )
 }
 
+function Experience() {
+  const { t } = useTranslation()
+  const stats = t('experience.stats', { returnObjects: true })
+  const points = t('experience.points', { returnObjects: true })
+
+  return (
+    <section className="section experience" id="experience">
+      <div className="section-head">
+        <SectionLabel index="03">{t('experience.label')}</SectionLabel>
+        <Reveal as="h2" className="section-title">
+          <Trans i18nKey="experience.title" />
+        </Reveal>
+      </div>
+
+      <div className="exp-grid">
+        <Reveal className="exp-meta">
+          <span className="exp-period">{t('experience.period')}</span>
+          <h3 className="exp-role">{t('experience.role')}</h3>
+          <span className="exp-clients">{t('experience.clients')}</span>
+          <dl className="exp-stats">
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <dt>{stat.label}</dt>
+                <dd>{stat.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
+        <ol className="exp-points">
+          {points.map((point, index) => (
+            <Reveal as="li" key={index} delay={index * 0.06}>
+              <span className="exp-num">{String(index + 1).padStart(2, '0')}</span>
+              <p>{point}</p>
+            </Reveal>
+          ))}
+        </ol>
+      </div>
+    </section>
+  )
+}
+
 function About() {
   const { t } = useTranslation()
   const education = t('education', { returnObjects: true })
@@ -293,7 +340,7 @@ function About() {
   return (
     <section className="section about" id="about">
       <div className="section-head">
-        <SectionLabel index="03">{t('about.label')}</SectionLabel>
+        <SectionLabel index="04">{t('about.label')}</SectionLabel>
       </div>
 
       <div className="about-grid">
@@ -314,10 +361,11 @@ function About() {
 
           <div className="about-columns">
             <Reveal className="about-block" delay={0.15}>
-              <h4>{t('about.education')}</h4>
+              <h3 className="block-title">{t('about.education')}</h3>
               <ul className="edu-list">
                 {education.map((item) => (
                   <li key={item.school}>
+                    {item.years && <span className="edu-years">{item.years}</span>}
                     <span className="edu-school">{item.school}</span>
                     <span className="edu-detail">{item.detail}</span>
                     {item.note && <span className="edu-note">{item.note}</span>}
@@ -326,7 +374,7 @@ function About() {
               </ul>
             </Reveal>
             <Reveal className="about-block" delay={0.25}>
-              <h4>{t('about.capabilities')}</h4>
+              <h3 className="block-title">{t('about.capabilities')}</h3>
               <ul className="cap-list">
                 {skills.map((skill) => (
                   <li key={skill}>{skill}</li>
@@ -348,7 +396,7 @@ function Contact() {
   return (
     <section className="section contact" id="contact">
       <div className="section-head">
-        <SectionLabel index="04">{t('contact.label')}</SectionLabel>
+        <SectionLabel index="05">{t('contact.label')}</SectionLabel>
       </div>
       <Reveal as="h2" className="contact-title">
         <Trans i18nKey="contact.title" />
@@ -399,18 +447,36 @@ function Footer() {
 // Sağ altta sabit duran CV butonu; hover/focus olunca etiketi açılır
 function CvButton() {
   const { t } = useTranslation()
+  const [hidden, setHidden] = useState(false)
+  // ilk giriş animasyonu gecikmeli, sonraki gizlenip görünmeler anında
+  const [ready, setReady] = useState(false)
+
+  useEffect(() => {
+    const targets = [document.getElementById('contact'), document.querySelector('.footer')].filter(Boolean)
+    const visible = new Set()
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => (entry.isIntersecting ? visible.add(entry.target) : visible.delete(entry.target)))
+      setHidden(visible.size > 0)
+    })
+    targets.forEach((target) => observer.observe(target))
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <motion.a
       href={CV_PATH}
       download={CV_FILENAME}
-      className="cv-fab"
+      className={`cv-fab ${hidden ? 'is-hidden' : ''}`}
+      aria-hidden={hidden || undefined}
+      tabIndex={hidden ? -1 : undefined}
       aria-label={t('contact.cv')}
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: EASE, delay: 1.4 }}
+      animate={hidden ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+      transition={{ duration: ready ? 0.5 : 0.8, ease: EASE, delay: ready ? 0 : 1.4 }}
+      onAnimationComplete={() => setReady(true)}
     >
       <span className="cv-fab-label">{t('contact.cv')}</span>
+      <span className="cv-fab-short" aria-hidden="true">{t('contact.cvShort')}</span>
       <svg className="cv-fab-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
         <path d="M12 4v11m0 0-5-5m5 5 5-5M5 20h14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
