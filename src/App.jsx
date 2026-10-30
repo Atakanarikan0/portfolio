@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, MotionConfig } from 'motion/react'
+import { motion, MotionConfig, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import { Trans, useTranslation } from 'react-i18next'
 import './App.css'
 import './utils/i18n'
@@ -204,24 +204,60 @@ function FeaturedWork() {
       <div className="featured">
         {featured.map((project, index) => (
           <Reveal key={project.title} className={`featured-item featured-item--${index + 1}`}>
-            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="featured-link">
-              <div className="featured-media">
-                <img src={project.image} alt={project.title} loading="lazy" style={project.focus ? { objectPosition: project.focus } : undefined} />
-                <span className="featured-cta">{t('work.visit')} ↗</span>
-              </div>
-              <div className="featured-info">
-                <span className="featured-index">{String(index + 1).padStart(2, '0')}</span>
-                <h3>{project.title}</h3>
-                <p className="featured-desc">{t(`projects.${project.key}`)}</p>
-                <span className="featured-meta">{t('work.client')} · {t(`categories.${project.category}`)}</span>
-                <span className="featured-meta">{project.stack}</span>
-                <span className="featured-meta">{project.year}</span>
-              </div>
-            </a>
+            <FloatCard project={project} index={index} speed={FLOAT_SPEEDS[index % FLOAT_SPEEDS.length]} />
           </Reveal>
         ))}
       </div>
     </section>
+  )
+}
+
+// Yüzen galeri: her kart kaydırırken kendi hızında süzülür (büyük sayı = daha hızlı)
+const FLOAT_SPEEDS = [0.35, 1.15, 0.75, 0.3, 1.05]
+
+function FloatCard({ project, index, speed }) {
+  const { t } = useTranslation()
+  const ref = useRef(null)
+  const reduceMotion = useReducedMotion()
+  const [compact, setCompact] = useState(() => window.matchMedia('(max-width: 720px)').matches)
+
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 720px)')
+    const update = () => setCompact(query.matches)
+    query.addEventListener('change', update)
+    return () => query.removeEventListener('change', update)
+  }, [])
+
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const range = reduceMotion ? 0 : speed * (compact ? 50 : 170)
+  const y = useTransform(scrollYProgress, [0, 1], [range, -range])
+  const imageY = useTransform(scrollYProgress, [0, 1], reduceMotion ? ['0%', '0%'] : ['-6%', '6%'])
+
+  return (
+    <motion.a
+      ref={ref}
+      href={project.demo}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="featured-link"
+      style={{ y }}
+    >
+      <div className="featured-media">
+        <motion.div className="featured-parallax" style={{ y: imageY }}>
+          <img src={project.image} alt={project.title} loading="lazy" style={project.focus ? { objectPosition: project.focus } : undefined} />
+        </motion.div>
+        <span className="featured-cta">{t('work.visit')} ↗</span>
+      </div>
+      <div className="featured-info">
+        <div className="featured-heading">
+          <span className="featured-index">{String(index + 1).padStart(2, '0')}</span>
+          <h3>{project.title}</h3>
+        </div>
+        <span className="featured-meta">{t('work.client')} · {t(`categories.${project.category}`)} · {project.year}</span>
+        <p className="featured-desc">{t(`projects.${project.key}`)}</p>
+        <span className="featured-stack">{project.stack}</span>
+      </div>
+    </motion.a>
   )
 }
 

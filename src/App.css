@@ -412,45 +412,48 @@ section[id] {
   color: var(--faint);
 }
 
-/* ───────────── Öne çıkan işler ───────────── */
+/* ───────────── Öne çıkan işler: yüzen galeri ───────────── */
+/* Kartlar farklı boyut ve oranlarda dağınık durur; kaydırırken her biri
+   kendi hızında süzülür (hız: App.jsx -> FLOAT_SPEEDS). */
 .featured {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 50px clamp(20px, 3vw, 48px);
+  column-gap: clamp(20px, 3vw, 48px);
+  padding-bottom: clamp(60px, 10vw, 160px);
 }
 
 .featured-item--1 {
-  grid-column: 1 / -1;
+  grid-column: 1 / span 7;
+  grid-row: 1;
 }
 
-/* Sol sütun: M-Four (2) ve hemen altında 50px aralıkla Zein (3).
-   Sağ sütun: Gürkan (4) iki satıra yayılır, böylece soldaki kartlar arasında boşluk kalmaz. */
 .featured-item--2 {
-  grid-column: 1 / span 7;
-  grid-row: 2;
-  margin-top: clamp(0px, 5vw, 70px);
+  grid-column: 9 / span 4;
+  grid-row: 1;
+  margin-top: clamp(120px, 18vw, 300px);
 }
 
 .featured-item--3 {
-  grid-column: 1 / span 7;
-  grid-row: 3;
+  grid-column: 2 / span 5;
+  grid-row: 2;
+  margin-top: clamp(40px, 6vw, 100px);
 }
 
 .featured-item--4 {
-  grid-column: 8 / -1;
-  grid-row: 2 / span 2;
-  align-self: start;
-  margin-top: clamp(80px, 14vw, 240px);
+  grid-column: 8 / span 4;
+  grid-row: 2;
+  margin-top: clamp(160px, 20vw, 340px);
 }
 
 .featured-item--5 {
-  grid-column: 6 / -1;
-  grid-row: 4;
-  margin-top: clamp(0px, 5vw, 70px);
+  grid-column: 4 / span 6;
+  grid-row: 3;
+  margin-top: clamp(60px, 8vw, 140px);
 }
 
 .featured-link {
   display: block;
+  will-change: transform;
 }
 
 .featured-media {
@@ -460,12 +463,22 @@ section[id] {
   background: var(--bg-elev);
 }
 
-.featured-item--1 .featured-media {
-  aspect-ratio: 16 / 8;
+.featured-item--2 .featured-media {
+  aspect-ratio: 4 / 5;
+}
+
+.featured-item--3 .featured-media {
+  aspect-ratio: 1 / 1;
 }
 
 .featured-item--4 .featured-media {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
+}
+
+/* Görsel çerçevesinden biraz büyük; içinde hafifçe kayar */
+.featured-parallax {
+  position: absolute;
+  inset: -8% 0;
 }
 
 .featured-media img {
@@ -473,25 +486,25 @@ section[id] {
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  transform: scale(1.04);
+  transform: scale(1.02);
   transition: transform 1.6s var(--ease), filter 1.2s var(--ease);
   filter: saturate(0.85);
 }
 
 .featured-link:hover .featured-media img {
-  transform: scale(1.1);
+  transform: scale(1.08);
   filter: saturate(1);
 }
 
 .featured-cta {
   position: absolute;
-  right: 24px;
-  bottom: 24px;
-  padding: 14px 22px;
+  right: 20px;
+  bottom: 20px;
+  padding: 12px 20px;
   border-radius: 999px;
   background: var(--text);
   color: var(--bg);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   opacity: 0;
@@ -505,29 +518,29 @@ section[id] {
 }
 
 .featured-info {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 20px;
-  row-gap: 4px;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
-  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 20px;
+}
+
+.featured-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
 }
 
 .featured-index {
-  grid-row: span 5;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.2em;
   color: var(--muted);
-  padding-top: 10px;
 }
 
 .featured-info h3 {
   font-family: var(--serif);
-  font-size: clamp(34px, 3.6vw, 56px);
+  font-size: clamp(30px, 3vw, 48px);
   line-height: 1;
   letter-spacing: -0.02em;
-  margin-bottom: 10px;
   transition: color 0.4s;
 }
 
@@ -535,16 +548,23 @@ section[id] {
   color: var(--accent);
 }
 
+.featured-meta {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
 .featured-desc {
-  margin: 0 0 14px;
-  max-width: 56ch;
-  font-size: 15px;
+  margin: 4px 0 2px;
+  max-width: 52ch;
+  font-size: 14px;
   line-height: 1.65;
   color: var(--muted);
 }
 
-.featured-meta {
-  font-size: 13px;
+.featured-stack {
+  font-size: 12px;
   color: var(--muted);
 }
 
@@ -1218,6 +1238,7 @@ section[id] {
 
   .featured {
     grid-template-columns: 1fr;
+    row-gap: 64px;
   }
 
   .featured-item--1,
@@ -1230,9 +1251,13 @@ section[id] {
     margin-top: 0;
   }
 
-  .featured-item--1 .featured-media,
-  .featured-item--4 .featured-media {
-    aspect-ratio: 16 / 11;
+  /* dağınık his: kartlar dönüşümlü olarak sola ve sağa kayık */
+  .featured-item:nth-child(odd) {
+    margin-right: 12%;
+  }
+
+  .featured-item:nth-child(even) {
+    margin-left: 12%;
   }
 
   .featured-cta {
