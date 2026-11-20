@@ -326,6 +326,34 @@ section[id] {
   margin: 0;
 }
 
+/* İki unvan alt alta: Frontend Developer + AI Content & Video Producer (showreel'e gider) */
+.hero .hero-role {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.hero-role-plus {
+  font-family: var(--serif);
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.hero-role-link {
+  color: var(--text);
+  background: linear-gradient(var(--accent), var(--accent)) left bottom / 0 1px no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 0.6s var(--ease), color 0.4s;
+}
+
+.hero-role-link:hover {
+  color: var(--accent);
+  background-size: 100% 1px;
+}
+
 .hero-lead {
   font-family: var(--serif);
   font-size: clamp(22px, 2.2vw, 32px);
@@ -954,6 +982,11 @@ section[id] {
   margin: 0 0 72px;
 }
 
+/* İki paragraf arka arkaya geldiğinde aradaki boşluk paragraf aralığı kadar olsun */
+.about-body:has(+ .about-body) {
+  margin-bottom: 1.2em;
+}
+
 .hl {
   color: var(--text);
 }
@@ -1080,6 +1113,8 @@ section[id] {
   font-family: var(--serif);
   font-size: clamp(26px, 3vw, 44px);
   font-style: italic;
+  /* serif'in eski usul rakamlarında 0, "o" harfine benziyor; adreste rakam net okunsun */
+  font-variant-numeric: lining-nums;
   position: relative;
   display: inline-block;
   padding-bottom: 6px;
