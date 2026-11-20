@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/reel", "destination": "/reel/index.html" }]
+}

@@ -1,0 +1,205 @@
+/* ───────────── /reel sayfası ───────────── */
+/* Ortak değişkenler, nav, hero-meta, contact ve footer stilleri App.css'ten gelir */
+
+.reel-hero {
+  position: relative;
+  padding: 120px var(--gutter) clamp(40px, 5vw, 64px);
+}
+
+.reel-hero::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  left: -15%;
+  width: 70vw;
+  height: 70vw;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 12%, transparent) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.reel-title {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--serif);
+  font-size: clamp(76px, min(15vw, 26vh), 240px);
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  margin: 5vh 0 4vh;
+}
+
+.reel-title .mask {
+  display: inline-block;
+}
+
+.reel-intro {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: end;
+  gap: 40px;
+}
+
+/* Video çerçevesi */
+.reel-stage {
+  padding: 0 var(--gutter);
+}
+
+.reel-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow: hidden;
+  background: #0a0908;
+  border: 1px solid var(--line);
+}
+
+/* Dikey (9:16) showreel: ekran yüksekliğine sığacak boyutta ortalanır */
+.reel-frame.is-vertical {
+  aspect-ratio: 9 / 16;
+  width: min(100%, calc(86svh * 9 / 16));
+  margin-inline: auto;
+}
+
+.reel-frame img,
+.reel-frame video,
+.reel-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: contain;
+  background: #0a0908;
+}
+
+.reel-frame img {
+  object-fit: cover;
+  transition: transform 1.4s var(--ease), opacity 0.6s var(--ease);
+}
+
+.reel-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, rgba(10, 9, 8, 0) 40%, rgba(10, 9, 8, 0.45) 100%);
+}
+
+.reel-play-btn {
+  width: clamp(96px, 11vw, 148px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #ece5d8;
+  border: 1px solid rgba(236, 229, 216, 0.5);
+  background: rgba(13, 12, 10, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 1.8vw, 26px);
+  transition: transform 0.7s var(--ease), background-color 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+
+.reel-play:hover .reel-play-btn,
+.reel-play:focus-visible .reel-play-btn {
+  transform: scale(1.08);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0d0c0a;
+}
+
+.reel-play:hover ~ img,
+.reel-frame:hover img {
+  transform: scale(1.02);
+}
+
+.reel-empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 24px;
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(22px, 2.6vw, 38px);
+  color: var(--muted);
+  background:
+    radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--accent) 10%, transparent) 0%, transparent 55%),
+    var(--bg-elev);
+}
+
+/* Araçlar ve süreç */
+.reel-info {
+  display: grid;
+  gap: clamp(40px, 5vw, 64px);
+}
+
+.reel-info-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  align-items: start;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.reel-info-row .block-title {
+  margin: 0;
+}
+
+.reel-tools {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 0;
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.6vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.reel-tools li:not(:last-child)::after {
+  content: '✦';
+  font-size: 0.35em;
+  color: var(--accent);
+  margin: 0 0.7em;
+  vertical-align: middle;
+}
+
+.reel-process {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.4vw, 36px);
+  line-height: 1.25;
+  max-width: 32ch;
+}
+
+@media (max-width: 720px) {
+  .reel-hero {
+    padding-top: 130px;
+  }
+
+  .reel-title {
+    font-size: 26vw;
+    margin: 5vh 0 3vh;
+  }
+
+  .reel-intro,
+  .reel-info-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .reel-frame:not(.is-vertical) {
+    aspect-ratio: 4 / 5;
+  }
+}

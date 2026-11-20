@@ -15,7 +15,7 @@ export const projects = [
   { title: 'Audiophile', image: '/img/audiophile.webp', demo: 'https://kamp-zodyak-flame.vercel.app/', repo: 'https://github.com/Atakanarikan0/kamp-zodyak', category: 'ecommerce', stack: 'JavaScript', year: 2025 },
 ];
 
-export const skills = ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Redux Toolkit', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'GSAP', 'Three.js', 'Figma', 'Git'];
+export const skills = ['Higgsfield', 'Kling', 'Seedance', 'Nano Banana', 'Gemini', 'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Redux Toolkit', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'GSAP', 'Three.js', 'Figma', 'Git'];
 
 export const socials = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/atakan-arikan-677b8a247/' },
@@ -23,4 +23,16 @@ export const socials = [
   { label: 'Instagram', href: 'https://www.instagram.com/atakan.arikann' },
 ];
 
-export const email = 'atakanarkn1@outlook.com';
+export const email = 'atakanarkn0@gmail.com';
+
+// /reel sayfası
+// video: YouTube ya da Vimeo linki, veya public/ altındaki bir mp4 yolu (ör. '/video/showreel.mp4'). Boşsa sayfa "yakında" gösterir.
+// poster: isteğe bağlı kapak görseli; YouTube'da boş bırakılırsa videonun kendi kapağı kullanılır
+export const reel = {
+  video: '/video/showreel.mp4',
+  poster: '/video/showreel-poster.jpg',
+  vertical: true, // dikey (9:16) video: çerçeve dikey açılır
+  cv: '/Atakan-Arikan-CV.pdf',
+  cvFilename: 'Atakan-Arıkan-CV.pdf',
+  tools: ['Higgsfield', 'Kling', 'Seedance', 'Nano Banana', 'Gemini'],
+};

@@ -4,18 +4,12 @@ import { Trans, useTranslation } from 'react-i18next'
 import './App.css'
 import './utils/i18n'
 import { projects, skills, socials, email } from './data/portfolio'
+import { readTheme } from './utils/theme'
 
 const EASE = [0.22, 1, 0.36, 1]
 const CV_PATH = '/Atakan-Arikan-CV.pdf'
 const CV_FILENAME = 'Atakan-Arıkan-CV.pdf'
 
-function readTheme() {
-  try {
-    return localStorage.getItem('theme') || 'dark'
-  } catch {
-    return 'dark'
-  }
-}
 
 function App() {
   const { i18n } = useTranslation()
@@ -53,7 +47,7 @@ function App() {
   )
 }
 
-function Reveal({ children, delay = 0, className, as = 'div' }) {
+export function Reveal({ children, delay = 0, className, as = 'div' }) {
   const Component = motion[as]
   return (
     <Component
@@ -164,7 +158,11 @@ function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: EASE, delay: 0.25 }}
       >
-        <p className="hero-role">{t('hero.role')}</p>
+        <p className="hero-role">
+          <span>{t('hero.role')}</span>
+          <span className="hero-role-plus" aria-hidden="true">+</span>
+          <a href="/reel" className="hero-role-link">{t('hero.role2')} ↗</a>
+        </p>
         <p className="hero-lead">{t('hero.lead')}</p>
       </motion.div>
     </section>
@@ -445,7 +443,7 @@ function About() {
           <div className="portrait-frame">
             <img src="/img/avatar.webp" alt="Atakan Arıkan" loading="lazy" />
           </div>
-          <span className="portrait-caption">Atakan Arıkan — {t('hero.role')}</span>
+          <span className="portrait-caption">Atakan Arıkan — {t('hero.role')} · {t('hero.role2')}</span>
         </Reveal>
 
         <div className="about-content">
@@ -454,6 +452,9 @@ function About() {
           </Reveal>
           <Reveal as="p" className="about-body" delay={0.1}>
             <Trans i18nKey="about.body" components={{ hl: <span className="hl" /> }} />
+          </Reveal>
+          <Reveal as="p" className="about-body" delay={0.15}>
+            <Trans i18nKey="about.body2" components={{ hl: <span className="hl" /> }} />
           </Reveal>
 
           <div className="about-columns">
@@ -514,7 +515,7 @@ function Contact() {
   )
 }
 
-function Footer() {
+export function Footer() {
   const { t, i18n } = useTranslation()
   const [now, setNow] = useState(() => new Date())
 
